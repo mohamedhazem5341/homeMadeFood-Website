@@ -1,0 +1,69 @@
+Problems I’m facing :-
+Customers keep asking for the menu → I send it manually every time
+Orders get lost or mixed up
+I don’t know what items are popular or not
+Customers forget what they added to their order
+Sometimes they leave the chat and come back → everything is gone
+I can’t easily update or highlight items (like “Out of stock”)
+
+🎯 What I want (Goals):-
+I want a modern website that:
+Shows my menu clearly
+Lets customers build their order easily
+Saves their progress if they leave and come back
+Makes ordering feel smooth and professional
+Helps me manage what’s shown (available / not available)
+🧩 Features I expect (but I won’t tell you how to build them)
+
+🟢 1. Interactive Menu
+Display all items (meals, drinks, desserts)
+Each item shows:
+name
+price
+image
+short description
+
+I want to be able to:
+highlight items (like “popular” or “new”)
+mark items as unavailable
+
+🟢 2. Smart Order System
+Customer can:
+add items
+remove items
+increase/decrease quantity
+Show:
+total price
+list of selected items
+
+🟢 3. Persistent Cart (very important)
+If customer refreshes or leaves → their order is still there
+If they come back later → same order appears
+
+🟢 4. Search & Filter
+Customer can:
+search by name
+filter (e.g. drinks / meals / desserts)
+Results should update instantly
+
+🟢 5. Smooth User Experience:-  ((later))
+When data is loading → show placeholder layout
+Clicking buttons should feel responsive
+No page reloads for actions
+
+🟢 6. Order Summary Page
+Clear breakdown of:
+items
+quantities
+total price
+Ability to:
+remove items
+clear entire order
+
+🟢 7. Simple “Admin Control” (basic but useful)
+I want a way to:
+add new items
+remove items
+update price or name
+
+(doesn’t need login system, just something simple for now)
