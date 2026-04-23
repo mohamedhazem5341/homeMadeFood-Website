@@ -4,15 +4,13 @@ let orderBtn = document.querySelector(".orderBtn");
 let doneBtn = document.querySelector(".doneBtn");
 let addBtn = document.querySelector(".addBtn");
 
-// let numValue = parseInt(inputNum.value)
-
 // menu items
 let ourMenu = JSON.parse(localStorage.getItem("menu")) || []; // static
 let cart = JSON.parse(localStorage.getItem("cart")) || []; // dynamic
 let activeOrder = JSON.parse(localStorage.getItem("order")) || []; // dynamic
 let menuOrdered = JSON.parse(localStorage.getItem("menuOrdered")) || []; // dynamic
 
-// add items to ourMenu array
+////////// add items to ourMenu array //////////
 function addItem(name, price) {
   let valueName = name;
   let valuePrice = price;
@@ -26,11 +24,8 @@ function addItem(name, price) {
 addBtn.addEventListener("click", () => {
   addItem(inputText.value, parseInt(inputNum.value));
 });
-// add items order to cart array
-let itemId = 0;
-let itemName = "";
-let itemPrice = 0;
 
+////////// add items order to cart array //////////
 function addToCart() {
   selectedItem = ourMenu.find((i) => i.name === inputText.value);
   if (selectedItem) {
@@ -40,8 +35,6 @@ function addToCart() {
     console.log("we do not have it sorry bawss");
     return;
   }
-  console.log(selectedItem);
-  console.log(selectedItem.id);
 
   const item = cart.find((i) => i.id === selectedItem.id);
 
@@ -51,27 +44,22 @@ function addToCart() {
     cart.push({ id: selectedItem.id, qty: parseInt(inputNum.value) });
   }
   localStorage.setItem("cart", JSON.stringify(cart));
-
-  // itemId = ourMenu.find(function (eo, i) {
-  //   if (ourMenu[i].name === inputText.value) {
-  //     console.log("we have it");
-  //     return ourMenu[i].id;
-  //   } else {
-  //     console.log("we do not have it sorry bawss");
-  //     return;
-  //   }
-  // });
-  // itemName = itemId.name || ""; //item name
-  // itemPrice = itemId.price || 0; //item price
-  // itemId = itemId.id; //item id
 }
 orderBtn.addEventListener("click", () => {
   addToCart();
 });
-// move items from cart array to activeOrder array & update menuOrdered array
 
+////////// move items from cart array to activeOrder array & update menuOrdered array //////////
 function addToOrderList() {
   cart.forEach((item) => {
+    // getting total price from cart and ourmenu //
+    const calcPrice = ourMenu.find((i) => i.id === item.id);
+    console.log(calcPrice, item.qty, "hi");
+    const totalP = calcPrice.price * item.qty;
+
+    // console.log(totalP, "this is your total price please pay in cash");
+
+    // updating menuOrdered to know what item is popular //
     const sentItem = menuOrdered.find((i) => i.id === item.id);
 
     if (sentItem) {
@@ -80,13 +68,15 @@ function addToOrderList() {
       menuOrdered.push({ id: item.id, ordersDone: item.qty });
     }
     localStorage.setItem("OrdersDone", JSON.stringify(menuOrdered));
-    /////////
+
+    // moving items from cart to activeOrder and clear cart //
     const orderItem = activeOrder.find((i) => i.id === item.id);
 
     if (orderItem) {
       orderItem.orders += item.qty;
+      orderItem.totalPrice += totalP;
     } else {
-      activeOrder.push({ id: item.id, orders: item.qty });
+      activeOrder.push({ id: item.id, orders: item.qty, totalPrice: totalP });
     }
     localStorage.setItem("orders", JSON.stringify(activeOrder));
     cart = [];
