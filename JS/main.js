@@ -27,7 +27,7 @@ addBtn.addEventListener("click", () => {
 
 ////////// add items order to cart array //////////
 function addToCart() {
-  selectedItem = ourMenu.find((i) => i.name === inputText.value);
+  const selectedItem = ourMenu.find((i) => i.name === inputText.value);
   if (selectedItem) {
     console.log("we have it");
     console.log(selectedItem);
@@ -54,9 +54,9 @@ function addToOrderList() {
   cart.forEach((item) => {
     // getting total price from cart and ourmenu //
     const calcPrice = ourMenu.find((i) => i.id === item.id);
+    if (!calcPrice) return;
     console.log(calcPrice, item.qty, "hi");
-    const totalP = calcPrice.price * item.qty;
-
+    let totalItemPrice = +calcPrice.price * item.qty;
     // console.log(totalP, "this is your total price please pay in cash");
 
     // updating menuOrdered to know what item is popular //
@@ -67,34 +67,28 @@ function addToOrderList() {
     } else {
       menuOrdered.push({ id: item.id, ordersDone: item.qty });
     }
-    localStorage.setItem("OrdersDone", JSON.stringify(menuOrdered));
 
     // moving items from cart to activeOrder and clear cart //
     const orderItem = activeOrder.find((i) => i.id === item.id);
 
     if (orderItem) {
       orderItem.orders += item.qty;
-      orderItem.totalPrice += totalP;
+      orderItem.totalPrice += totalItemPrice;
     } else {
-      activeOrder.push({ id: item.id, orders: item.qty, totalPrice: totalP });
+      activeOrder.push({
+        id: item.id,
+        orders: item.qty,
+        totalPrice: totalItemPrice,
+      });
     }
-    localStorage.setItem("orders", JSON.stringify(activeOrder));
-    cart = [];
-    localStorage.setItem("cart", JSON.stringify(cart));
   });
+  cart = [];
+  localStorage.setItem("cart", JSON.stringify(cart));
+  localStorage.setItem("menuOrdered", JSON.stringify(menuOrdered));
+  localStorage.setItem("order", JSON.stringify(activeOrder));
 }
 
 //////
 doneBtn.addEventListener("click", () => {
   addToOrderList();
 });
-
-// function newOrder(itemId, quantity) {
-//   for (let i = 0; i < ourMenu.length; i++) {
-//     if (itemId === ourMenu[i].name) {
-//       activeOrder.push({ id: ourMenu[i].id, qty: quantity });
-//     }
-//   }
-//   localStorage.setItem("order", JSON.stringify(activeOrder));
-//   console.log(cart);
-// }
