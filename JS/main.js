@@ -1,64 +1,110 @@
-// menu items
-
-let ourMenu = JSON.parse(localStorage.getItem("menu")) || [];
-let menuOrdered = JSON.parse(localStorage.getItem("menuOrdered")) || [];
-let activeOrder = JSON.parse(localStorage.getItem("order")) || [];
-
 let inputText = document.querySelector(".testText");
 let inputNum = document.querySelector(".testNum");
 let orderBtn = document.querySelector(".orderBtn");
 let doneBtn = document.querySelector(".doneBtn");
 let addBtn = document.querySelector(".addBtn");
 
+// let numValue = parseInt(inputNum.value)
+
+// menu items
+let ourMenu = JSON.parse(localStorage.getItem("menu")) || []; // static
+let cart = JSON.parse(localStorage.getItem("cart")) || []; // dynamic
+let activeOrder = JSON.parse(localStorage.getItem("order")) || []; // dynamic
+let menuOrdered = JSON.parse(localStorage.getItem("menuOrdered")) || []; // dynamic
+
+// add items to ourMenu array
 function addItem(name, price) {
   let valueName = name;
   let valuePrice = price;
   ourMenu.push({
-    id: ourMenu.length + 1,
+    id: crypto.randomUUID(),
     name: valueName,
     price: valuePrice,
   });
   localStorage.setItem("menu", JSON.stringify(ourMenu));
 }
-
-function newOrder(quantity) {
-  for (let i = 0; i < ourMenu.length; i++) {
-    if (inputText.value === ourMenu[i].name) {
-      activeOrder.push({ id: ourMenu[i].id, quantities: quantity });
-    }
-  }
-  localStorage.setItem("order", JSON.stringify(activeOrder));
-}
-// menuOrdered.push({ id: 1, orders: 1 });
-// localStorage.setItem("menuOrdered", JSON.stringify(menuOrdered));
-
-function orderDone(one, two) {
-  if (menuOrdered[0] === undefined) {
-    menuOrdered.push({id: activeOrder[i].id, orders: activeOrder[i].quantities});
-  }
-
-  activeOrder.forEach((item) => {
-    console.log("1");
-  });
-
-  // if (activeOrder[i].id === menuOrdered[i].id) {
-  //   menuOrdered[i].orders += activeOrder[i].quantities;
-  // } else if (menuOrdered === "" || activeOrder[i].id) {
-
-  // }
-
-  localStorage.setItem("menuOrdered", JSON.stringify(menuOrdered));
-  localStorage.removeItem("order");
-}
-
 addBtn.addEventListener("click", () => {
   addItem(inputText.value, parseInt(inputNum.value));
 });
-////////
+// add items order to cart array
+let itemId = 0;
+let itemName = "";
+let itemPrice = 0;
+
+function addToCart() {
+  selectedItem = ourMenu.find((i) => i.name === inputText.value);
+  if (selectedItem) {
+    console.log("we have it");
+    console.log(selectedItem);
+  } else {
+    console.log("we do not have it sorry bawss");
+    return;
+  }
+  console.log(selectedItem);
+  console.log(selectedItem.id);
+
+  const item = cart.find((i) => i.id === selectedItem.id);
+
+  if (item) {
+    item.qty += parseInt(inputNum.value);
+  } else {
+    cart.push({ id: selectedItem.id, qty: parseInt(inputNum.value) });
+  }
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  // itemId = ourMenu.find(function (eo, i) {
+  //   if (ourMenu[i].name === inputText.value) {
+  //     console.log("we have it");
+  //     return ourMenu[i].id;
+  //   } else {
+  //     console.log("we do not have it sorry bawss");
+  //     return;
+  //   }
+  // });
+  // itemName = itemId.name || ""; //item name
+  // itemPrice = itemId.price || 0; //item price
+  // itemId = itemId.id; //item id
+}
 orderBtn.addEventListener("click", () => {
-  newOrder(parseInt(inputNum.value));
+  addToCart();
 });
-////////
+// move items from cart array to activeOrder array & update menuOrdered array
+
+function addToOrderList() {
+  cart.forEach((item) => {
+    const sentItem = menuOrdered.find((i) => i.id === item.id);
+
+    if (sentItem) {
+      sentItem.ordersDone += item.qty;
+    } else {
+      menuOrdered.push({ id: item.id, ordersDone: item.qty });
+    }
+    localStorage.setItem("OrdersDone", JSON.stringify(menuOrdered));
+    /////////
+    const orderItem = activeOrder.find((i) => i.id === item.id);
+
+    if (orderItem) {
+      orderItem.orders += item.qty;
+    } else {
+      activeOrder.push({ id: item.id, orders: item.qty });
+    }
+    localStorage.setItem("orders", JSON.stringify(activeOrder));
+    cart = [];
+    localStorage.setItem("cart", JSON.stringify(cart));
+  });
+}
+
+//////
 doneBtn.addEventListener("click", () => {
-  orderDone();
+  addToOrderList();
 });
+
+// function newOrder(itemId, quantity) {
+//   for (let i = 0; i < ourMenu.length; i++) {
+//     if (itemId === ourMenu[i].name) {
+//       activeOrder.push({ id: ourMenu[i].id, qty: quantity });
+//     }
+//   }
+//   localStorage.setItem("order", JSON.stringify(activeOrder));
+//   console.log(cart);
+// }
