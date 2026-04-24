@@ -3,20 +3,24 @@ let inputNum = document.querySelector(".testNum");
 let orderBtn = document.querySelector(".orderBtn");
 let doneBtn = document.querySelector(".doneBtn");
 let addBtn = document.querySelector(".addBtn");
+let userOrderBtn = document.querySelectorAll(".order");
 
 // menu items
 let ourMenu = JSON.parse(localStorage.getItem("menu")) || []; // static
 let cart = JSON.parse(localStorage.getItem("cart")) || []; // dynamic
-let activeOrder = JSON.parse(localStorage.getItem("order")) || []; // dynamic
-// make new array for total price only tomorrow =>
-let TotalPrice = JSON.parse(localStorage.getItem("totalPrice")) || []; // dynamic
+let activeOrder = JSON.parse(localStorage.getItem("order")) || [
+  { items: [], totalPrice: 0 },
+]; // dynamic
 let menuOrdered = JSON.parse(localStorage.getItem("menuOrdered")) || []; // dynamic
+let orderHistory = JSON.parse(localStorage.getItem("orderHistory")) || []; // dynamic
+
+// userOrderBtn[0].setAttribute("data-id", `${ourMenu[0].id}`); //// =>
 
 ////////// add items to ourMenu array //////////
 function addItem(name, price) {
   let valueName = name;
   let valuePrice = price;
-  if (!valueName || !valuePrice) {
+  if (!valueName || valuePrice <= 0 || valuePrice === NaN) {
     console.log("enter a name you dumass");
     return;
   } else {
@@ -38,18 +42,17 @@ function addToCart() {
   const selectedItem = ourMenu.find((i) => i.name === inputText.value); // i want to change it to search by id not name
   if (selectedItem) {
     console.log("we have it");
-    console.log(selectedItem);
   } else {
-    console.log("we do not have it sorry bawss");
+    console.log("we do not have it sorry, bawss");
     return;
   }
 
   const item = cart.find((i) => i.id === selectedItem.id);
 
   if (item) {
-    item.qty += parseInt(inputNum.value);
+    item.qty += Number(inputNum.value); 
   } else {
-    cart.push({ id: selectedItem.id, qty: parseInt(inputNum.value) });
+    cart.push({ id: selectedItem.id, qty: Number(inputNum.value) }); 
   }
   localStorage.setItem("cart", JSON.stringify(cart));
 }
@@ -59,23 +62,18 @@ orderBtn.addEventListener("click", () => {
 
 ////////// move items from cart array to activeOrder array & update menuOrdered array //////////
 function addToOrderList() {
-  let totalP = 0;
+  let totalValue = 0;
+  if (cart.length === 0) return;
   cart.forEach((item) => {
-    // getting total price from cart and ourmenu //
+    // getting total price from cart and ourMenu //
     const calcPrice = ourMenu.find((i) => i.id === item.id);
     if (!calcPrice) return;
 
-    let totalItemPrice = calcPrice.price * item.qty;
-
-    if (totalP) {
-      totalP += totalItemPrice;
-    } else {
-      totalP = totalItemPrice;
-    }
-
-    console.log(totalItemPrice, "this is total item price");
-    console.log(totalP, "this is total price");
-
+    let totalItemPrice = calcPrice.price * item.qty; // to calculate total item price //
+    //-//
+    // to calculate total order price //
+    totalValue = totalItemPrice;
+    //-//
     // updating menuOrdered to know what item is popular //
     const sentItem = menuOrdered.find((i) => i.id === item.id);
 
@@ -86,34 +84,47 @@ function addToOrderList() {
     }
 
     // moving items from cart to activeOrder and clear cart //
-    const orderItem = activeOrder.find((i) => i.id === item.id);
-
+    // and show total item price //
+    const orderItem = activeOrder[0].items.find((i) => i.id === item.id);
     if (orderItem) {
       orderItem.orders += item.qty;
       orderItem.totalItemPrice += totalItemPrice;
     } else {
-      activeOrder.push({
+      activeOrder[0].items.push({
         id: item.id,
         orders: item.qty,
         totalItemPrice: totalItemPrice,
       });
     }
-
-    const findPrice = activeOrder.find((i) => i.TotalPrice);
-
-    if (findPrice) {
-      findPrice.TotalPrice += totalP;
-    } else {
-      activeOrder.push({ TotalPrice: totalP });
-    }
-
-    console.log(totalP, "total all");
+    //// to show the total price of the order ////
+    activeOrder[0].totalPrice += totalItemPrice;
+    // const findPrice = activeOrder.find((i) => i.totalPrice);
+    // if (findPrice) {
+    //   findPrice.totalPrice += totalItemPrice;
+    //   // to find where totalprice object and send it to last
+    //   const index = activeOrder.findIndex((item) => item.totalPrice);
+    //   if (index !== -1) {
+    //     activeOrder.push(activeOrder.splice(index, 1)[0]);
+    //   }
+    // } else {
+    //   activeOrder.push({ totalPrice: totalValue });
+    // }
+    //-//
+    // TotalOrderHistory array to show total price History of the user //
+    // orderHistory[0].totalPriceHistory += totalItemPrice;
   });
-
+  orderHistory.push(activeOrder);
+  //-//
+  // save arrays in local storage and clear cart array //
   cart = [];
   localStorage.setItem("cart", JSON.stringify(cart));
   localStorage.setItem("menuOrdered", JSON.stringify(menuOrdered));
   localStorage.setItem("order", JSON.stringify(activeOrder));
+  // after 10 second order array gets clear "simulates that order has been arrived to the customer"
+  // setTimeout(() => {
+  //   localStorage.removeItem("order");
+  // }, 10000);
+  localStorage.setItem("orderHistory", JSON.stringify(orderHistory));
 }
 //////
 doneBtn.addEventListener("click", () => {
