@@ -1,0 +1,53 @@
+:root {
+  --primary: #1a1a1a;
+  --secondary: #fdfbf7;
+  --muted: #ddd9d8;
+  /* /////// */
+  --bg: #fdf8f8;
+  --card-bg: #fdfbf7;
+  /* /////// */
+  --text-main: #1c1b1b;
+  --text-inverse: #fdfbf7;
+  --text-muted: #444748;
+  /* /////// */
+  --logo-family: Cormorant Garamond;
+  --heading-family: Noto Serif, sophisticated serif;
+  --body-family: Manrope, sans-serif;
+  --heading-font: clamp(3rem, 5vw, 4rem);
+  --title-font: clamp(2rem, 5vw, 2.5rem);
+  --body-font: clamp(1rem, 5vw, 1.125rem);
+  --heading-weight: 500;
+  --title-weight: 400; /*/////*/
+  --body-weight: 300;
+}
+.dark {
+  /* this for btns and events */
+  --primary: #1a1a1a;
+  --muted: #ddd9d8;
+  --secondary: #fdfbf7;
+  --secondary: #f5f5f5;
+  --muted: #231f1f;
+  /* /////// */
+  /* this for bg */
+  --bg: #121212;
+  --card-bg: #1a1a1a;
+  /* /////// */
+  /* this for text */
+  --text-main: #f5f5f5;
+  --text-inverse: #0a0a0a;
+  --text-muted: #5c5552;
+  /* /////// */
+}
+body {
+  background: var(--secondary);
+  color: var(--primary);
+}
+
+.n1 {
+  background-color: var(--bg);
+  color: var(--text-main);
+}
+.n2 {
+  background-color: var(--card-bg);
+  color: var(--text-main);
+}

@@ -50,9 +50,9 @@ function addToCart() {
   const item = cart.find((i) => i.id === selectedItem.id);
 
   if (item) {
-    item.qty += Number(inputNum.value); 
+    item.qty += Number(inputNum.value);
   } else {
-    cart.push({ id: selectedItem.id, qty: Number(inputNum.value) }); 
+    cart.push({ id: selectedItem.id, qty: Number(inputNum.value) });
   }
   localStorage.setItem("cart", JSON.stringify(cart));
 }

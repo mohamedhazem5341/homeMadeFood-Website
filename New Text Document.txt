@@ -67,3 +67,24 @@ remove items
 update price or name
 
 (doesn’t need login system, just something simple for now)
+
+
+
+
+
+
+
+Design Overview:
+Colors:
+Cream (#FDF8F8) for the background
+Deep Charcoal (#1A1A1A) for text and primary elements
+ and Muted Stone (#DDD9D8) for subtle container backgrounds.
+Typography:
+Headings: Noto Serif, a sophisticated serif Size: 4rem (64px) for Hero titles, 2.5rem (40px) for section headers. Weight: 500 (Medium).
+Body: sans-serif. Size: 1.125rem (18px). Weight: 300 (Light).
+Spacing: padding (8rem / 128px) between major sections and large margins.
+
+Dark Mode Strategy:
+Palette: I used Rich Obsidian (#121212) for the main background and Muted Charcoal (#1A1A1A) for containers. This creates a deep, multi-layered look that feels like an exclusive, dimly lit restaurant.
+Typography: The text is rendered in Soft Bone (#F5F5F5). This provides high legibility while maintaining a softer, more luxurious feel than pure white.
+Glassmorphism: I've leaned into the glass effects for the CTA buttons and cards, which work beautifully in dark mode to create a sense of depth and premium quality.
