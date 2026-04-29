@@ -53,9 +53,9 @@
   --glass-border: 1px solid rgba(104, 104, 104, 0.464);
 }
 body {
+  position: relative;
   background: var(--bg);
   color: var(--text-main);
-  position: relative;
   font-family: var(--body-family);
   height: 10000px;
 }
@@ -81,6 +81,8 @@ body {
 }
 /* navbar */
 .navbar .links-Div {
+  position: sticky;
+  top: 0px;
   border-radius: calc(var(--radius) / 2);
   list-style: none;
   background-color: var(--glass-bg);
@@ -102,6 +104,8 @@ body {
 
 .smallMenuBtn {
   display: none;
+  border: none;
+  background: none;
   width: clamp(40px, 5vw, 60px);
 }
 .smallMenuBtn img {
