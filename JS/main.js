@@ -16,17 +16,22 @@ let orderHistory = JSON.parse(localStorage.getItem("orderHistory")) || []; // dy
 
 // userOrderBtn[0].setAttribute("data-id", `${ourMenu[0].id}`); //// =>
 
+let darkBtn = document.querySelector(".darkBtn");
+let smallMenuBtn = document.querySelector(".smallMenuBtn");
+let links = document.querySelector(".links");
+let linksDiv = document.querySelector(".links-Div");
 
-let darkBtn = document.querySelector(".darkBtn")
+console.log(linksDiv);
+smallMenuBtn.addEventListener("click", () => {
+  linksDiv.classList.toggle("active");
+  linksDiv.classList.toggle("close");
+  smallMenuBtn.classList.toggle("active");
+  smallMenuBtn.classList.toggle("close");
+});
 
-
-darkBtn.addEventListener("click", ()=>{
-  document.body.classList.toggle("dark")
-})
-
-
-
-
+darkBtn.addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+});
 
 ////////// add items to ourMenu array //////////
 function addItem(name, price) {
@@ -142,6 +147,3 @@ function addToOrderList() {
 doneBtn.addEventListener("click", () => {
   addToOrderList();
 });
-
-
-

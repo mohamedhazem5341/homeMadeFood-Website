@@ -102,16 +102,18 @@ button {
   position: fixed;
   left: 50%;
   transform: translate(-50%);
-  border-radius: calc(var(--radius) / 2);
   list-style: none;
   background-color: var(--glass-bg);
   border: var(--glass-border);
+  border-radius: calc(var(--radius) / 2);
   backdrop-filter: blur(10px);
   box-shadow: 4px 4px 10px -10px;
   overflow: hidden;
 }
 .links-Div .links {
   display: flex;
+  position: relative;
+  z-index: 99;
 }
 .links button {
   background: none;
@@ -128,9 +130,15 @@ button {
   background-color: var(--glass-btn-bg);
 }
 .smallMenuBtn {
+  position: fixed;
+  left: 45%;
+  z-index: -1;
   display: none;
-  border: none;
-  background: none;
+  background-color: var(--glass-bg);
+  border: var(--glass-border);
+  border-radius: calc(var(--radius) / 2);
+  backdrop-filter: blur(10px);
+  box-shadow: 4px 4px 10px -10px;
   width: clamp(40px, 5vw, 60px);
   transition: background-color 0.2s ease;
 }
@@ -343,9 +351,12 @@ section {
   letter-spacing: 2px;
   font-weight: 800;
 }
-.itemInfo p{
+.itemInfo p {
   text-transform: capitalize;
 }
+
+/*/////////////////////////// PeakMenu ///////////////////////////*/
+
 /* /////////////////// Dark Mode /////////////////// */
 
 .dark .logoDiv a {
@@ -365,9 +376,60 @@ section {
   .smallMenuBtn {
     display: block;
   }
-  .links-Div .links {
-    display: none;
+  .smallMenuBtn.active {
+    transform: translateY(220%);
+    animation: moveBtnIn 0.3s ease;
   }
+  .smallMenuBtn.close {
+    transform: translateY(0%);
+    animation: moveBtnOut 0.3s ease;
+  }
+  .links-Div.active {
+    display: flex;
+    padding: var(--padding) 0;
+  }
+  .links-Div.close {
+    animation: hideNavbar 0.3s ease;
+  }
+  .links-Div {
+    display: none;
+    width: min-content;
+    animation: showNavbar 0.3s linear;
+  }
+
+  @keyframes moveBtnIn {
+    from {
+      transform: translateY(0%);
+    }
+    to {
+      transform: translateY(220%);
+    }
+  }
+  @keyframes moveBtnOut {
+    from {
+      transform: translateY(220%);
+    }
+    to {
+      transform: translateY(0%);
+    }
+  }
+  @keyframes showNavbar {
+    0%{width: 0%;}
+    25%{width: 15%;}
+    50%{width: 25%;}
+    65%{width: 50%;}
+    75%{width: 60%;}
+    100%{width: min-content;}
+  }
+  @keyframes hideNavbar {
+    from {
+      width: 96%;
+    }
+    to {
+      width: 0%;
+    }
+  }
+
   .logoDiv a {
     font-size: calc(var(--body-font));
   }
