@@ -281,7 +281,6 @@ section {
   text-align: center;
   margin: calc(var(--margin) + 4rem) var(--margin) calc(var(--margin) + 10rem);
   padding: 0 calc(var(--padding) * 4);
-  height: 60vh;
 }
 .peakMenu .peakSpan {
   text-transform: uppercase;
