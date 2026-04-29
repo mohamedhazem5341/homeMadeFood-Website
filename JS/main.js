@@ -16,6 +16,18 @@ let orderHistory = JSON.parse(localStorage.getItem("orderHistory")) || []; // dy
 
 // userOrderBtn[0].setAttribute("data-id", `${ourMenu[0].id}`); //// =>
 
+
+let darkBtn = document.querySelector(".darkBtn")
+
+
+darkBtn.addEventListener("click", ()=>{
+  document.body.classList.toggle("dark")
+})
+
+
+
+
+
 ////////// add items to ourMenu array //////////
 function addItem(name, price) {
   let valueName = name;
@@ -130,3 +142,6 @@ function addToOrderList() {
 doneBtn.addEventListener("click", () => {
   addToOrderList();
 });
+
+
+
