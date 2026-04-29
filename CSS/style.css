@@ -15,18 +15,22 @@
   --logo-family: "Cormorant Garamond", serif;
   --heading-family: "Noto Serif", sophisticated serif;
   --body-family: "Manrope", sans-serif;
-  --heading-font: clamp(3rem, 5vw, 4rem);
+  --heading-font: clamp(2.5rem, 10vw, 6rem);
   --title-font: clamp(2rem, 5vw, 2.5rem);
   --body-font: clamp(0.8rem, 4vw, 1.125rem);
   --heading-weight: 500;
   --title-weight: 400; /*/////*/
   --body-weight: 300;
   --padding: clamp(10px, 3vw, 20px);
+  --margin: 4px;
   --radius: 12px;
   --shadow: 4px 4px 10px -10px;
   /* glass bg */
-  --glass-bg: #1a1a1a0c;
-  --glass-border: 1px solid rgba(104, 104, 104, 0.4);
+  --glass-bg: #1a1a1a59;
+  --glass-border: 1px solid rgba(147, 147, 147, 0.378);
+
+  --glass-btn-bg: #fdfbf723;
+  --glass-btn-border: 1px solid rgba(104, 104, 104, 0.464);
 }
 * {
   margin: 0;
@@ -59,18 +63,30 @@ body {
   font-family: var(--body-family);
   height: 10000px;
 }
+img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+button {
+  cursor: pointer;
+}
 /*/////////////////////////// NAVBAR ///////////////////////////*/
 .navbar {
-    position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border: var(--border);
   padding: var(--padding);
+  z-index: 99;
 }
 .navbar a {
   text-decoration: none;
-  color: var(--text-main);
+  color: var(--text-inverse);
 }
 .navbar .logoDiv {
   border: var(--border);
@@ -79,8 +95,8 @@ body {
   font-size: calc(var(--body-font) + 0.5rem);
   font-family: var(--logo-family);
   font-weight: 900;
+  color: var(--text-inverse);
 }
-/* navbar */
 .navbar .links-Div {
   position: fixed;
   left: 50%;
@@ -91,6 +107,7 @@ body {
   border: var(--glass-border);
   backdrop-filter: blur(10px);
   box-shadow: 4px 4px 10px -10px;
+  overflow: hidden;
 }
 .links-Div .links {
   color: var(--text-main);
@@ -101,9 +118,8 @@ body {
   transition: background-color 0.2s ease;
 }
 .links a:hover {
-  background-color: var(--glass-bg);
+  background-color: var(--glass-btn-bg);
 }
-
 .smallMenuBtn {
   display: none;
   border: none;
@@ -118,7 +134,7 @@ body {
   width: 100%;
   display: block;
 }
-.CTAbtn {
+.primaryBtn {
   border: none;
   background-color: var(--secondary);
   font-size: var(--body-font);
@@ -127,6 +143,82 @@ body {
   box-shadow: var(--shadow);
   font-family: var(--body-family);
   font-weight: 600;
+  cursor: pointer;
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease,
+    filter 0.2s ease;
+}
+.primaryBtn:hover {
+  box-shadow: none;
+  transform: translate(1px, 1px);
+  filter: brightness(90%);
+}
+
+.secondaryBtn {
+  color: var(--text-inverse);
+  background-color: var(--glass-btn-bg);
+  border: var(--glass-border);
+  padding: var(--padding) calc(var(--padding) * 2);
+  border-radius: var(--radius);
+  backdrop-filter: blur(10px);
+  box-shadow: 4px 4px 10px -8px #807d7d;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.1s ease;
+}
+.secondaryBtn:hover {
+  box-shadow: none;
+  transform: translate(1px, 1px);
+}
+/* ////////////////// */
+section {
+  position: relative;
+}
+.heroSection {
+  color: var(--text-inverse);
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  border-radius: var(--radius);
+  margin: var(--margin);
+  padding: var(--padding);
+  overflow: hidden;
+  height: 100vh;
+}
+.heroSection img {
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+  filter: brightness(30%);
+  z-index: -1;
+}
+.heroSection .heroInfo {
+  text-align: center;
+  justify-content: center;
+  width: 70%;
+}
+.heroSection h1 {
+  font-size: var(--heading-font);
+  font-family: var(--heading-family);
+  font-weight: 400;
+}
+.heroSection p {
+  margin: auto;
+  font-size: var(--body-font);
+  font-family: var(--body-family);
+  font-weight: 200;
+  width: 60%;
+}
+.heroSection .heroBtns {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+.heroBtns button:nth-child(2) {
+  background: none;
 }
 
 @media (max-width: 768px) {
@@ -138,5 +230,23 @@ body {
   }
   .logoDiv a {
     font-size: calc(var(--body-font));
+  }
+
+  .heroSection .heroBtns {
+    flex-flow: column;
+    gap: 10px;
+  }
+  .secondaryBtn {
+    padding: calc(var(--padding) * 2) calc(var(--padding) * 2);
+  }
+  .heroSection .heroInfo {
+    width: 100%;
+  }
+  .heroSection p {
+    margin: auto;
+    font-size: var(--body-font);
+    font-family: var(--body-family);
+    font-weight: 200;
+    width: 80%;
   }
 }
