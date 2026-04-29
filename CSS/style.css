@@ -404,7 +404,7 @@ section {
   /* ///// */
   .peakMenu {
     text-align: center;
-    margin: calc(var(--margin) + 4rem) 0;
+    margin: calc(var(--margin) + 4rem) 0 calc(var(--margin) + 10rem);
     padding: 0 calc(var(--padding));
   }
 
