@@ -24,9 +24,7 @@ let linksDiv = document.querySelector(".links-Div");
 console.log(linksDiv);
 smallMenuBtn.addEventListener("click", () => {
   linksDiv.classList.toggle("active");
-  linksDiv.classList.toggle("close");
   smallMenuBtn.classList.toggle("active");
-  smallMenuBtn.classList.toggle("close");
 });
 
 darkBtn.addEventListener("click", () => {

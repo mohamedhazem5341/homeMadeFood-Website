@@ -263,7 +263,7 @@ section {
   background: var(--glass-bg);
   border: var(--glass-border);
   border-radius: var(--radius);
-  width: 50%;
+  width: clamp(520px, 50vw, 650px);
   height: 100%;
 }
 .storyInfo span {
@@ -303,8 +303,10 @@ section {
 .peakMenu .previewMenu {
   display: grid;
   justify-content: center;
-  grid-template-columns: repeat(3, 320px);
-  gap: 60px;
+  grid-template-columns: repeat(3, clamp(220px, 30vw, 420px));
+  grid-template-rows: repeat(3, 1fr);
+  grid-auto-flow: row dense;
+  grid-gap: clamp(20px, 4vw, 60px);
   margin: calc(var(--margin) + 2rem) 0;
   height: 100%;
 }
@@ -372,28 +374,20 @@ section {
   color: var(--text-main);
 }
 
-@media (max-width: 768px) {
-  .smallMenuBtn {
-    display: block;
-  }
+@media (max-width: 900px) {
   .smallMenuBtn.active {
     transform: translateY(220%);
     animation: moveBtnIn 0.3s ease;
   }
-  .smallMenuBtn.close {
-    transform: translateY(0%);
-    animation: moveBtnOut 0.3s ease;
+  .smallMenuBtn {
+    display: block;
   }
   .links-Div.active {
     display: flex;
-    padding: var(--padding) 0;
-  }
-  .links-Div.close {
-    animation: hideNavbar 0.3s ease;
   }
   .links-Div {
     display: none;
-    width: min-content;
+    padding: var(--padding) 0;
     animation: showNavbar 0.3s linear;
   }
 
@@ -405,28 +399,12 @@ section {
       transform: translateY(220%);
     }
   }
-  @keyframes moveBtnOut {
-    from {
-      transform: translateY(220%);
-    }
-    to {
-      transform: translateY(0%);
-    }
-  }
   @keyframes showNavbar {
-    0%{width: 0%;}
-    25%{width: 15%;}
-    50%{width: 25%;}
-    65%{width: 50%;}
-    75%{width: 60%;}
-    100%{width: min-content;}
-  }
-  @keyframes hideNavbar {
     from {
-      width: 96%;
+      width: 0%;
     }
     to {
-      width: 0%;
+      width: 80%;
     }
   }
 
@@ -436,10 +414,12 @@ section {
   /* ///// */
   .heroSection .heroBtns {
     flex-flow: column;
-    gap: 10px;
+    justify-content: center;
+    gap: 20px;
   }
   .glassBtn {
-    padding: calc(var(--padding) * 2) calc(var(--padding) * 2);
+    padding: var(--padding) calc(var(--padding) * 2);
+    padding: clamp(1rem, calc(var(--padding) * 2), 1.5rem)  calc(var(--padding) * 2);
   }
   .heroSection .heroInfo {
     width: 100%;
@@ -470,7 +450,7 @@ section {
   }
 
   .peakMenu .previewMenu {
-    grid-template-columns: repeat(1, 300px);
+    grid-template-columns: repeat(1, clamp(300px, 60vw, 500px));
     gap: 20px;
   }
 }
