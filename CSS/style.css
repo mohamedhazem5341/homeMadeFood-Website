@@ -353,7 +353,7 @@ section {
   text-transform: capitalize;
 }
 
-/*/////////////////////////// PeakMenu ///////////////////////////*/
+/*/////////////////////////// FeedbackSection ///////////////////////////*/
 .feedbackSection {
   display: flex;
   flex-flow: column;
@@ -376,13 +376,13 @@ section {
   display: flex;
   width: 100%;
   height: 100%;
+  transition: transform .3s ease;
 }
 .slides .slide {
   display: flex;
   flex-flow: column;
   align-items: center;
   min-width: 100%;
-  transform: translateX(-00%);
 }
 .slide span {
   color: var(--text-muted);
@@ -397,7 +397,6 @@ section {
   font-size: var(--title-font);
   font-weight: 300;
 }
-
 .slide h4 {
   font-family: var(--body-family);
   font-size: calc(var(--body-font) - 0.2rem);
@@ -419,7 +418,7 @@ section {
   width: clamp(40px, 10vw, 60px);
   margin: 0 var(--margin);
   padding: calc(var(--padding) / 1.5);
-  background: var(--card-bg);
+  background: none;
   border: var(--glass-btn-border);
   box-shadow: 4px 4px 10px -7px;
   transition:
@@ -433,6 +432,9 @@ section {
 .slidesBtns .prev img {
   transform: rotate(180deg);
 }
+
+/*/////////////////////////// FeedbackSection ///////////////////////////*/
+
 /* /////////////////// Dark Mode /////////////////// */
 
 .dark .logoDiv a {
@@ -527,7 +529,6 @@ section {
     gap: 20px;
   }
   /* ///// */
-
   .feedbackSection .slideShow {
     width: 100%;
   }
@@ -539,4 +540,5 @@ section {
     font-size: var(--title-font);
     font-weight: 300;
   }
+  /* ///// */
 }

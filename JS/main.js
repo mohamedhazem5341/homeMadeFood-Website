@@ -5,6 +5,58 @@ let doneBtn = document.querySelector(".doneBtn");
 let addBtn = document.querySelector(".addBtn");
 let userOrderBtn = document.querySelectorAll(".order");
 
+/////////// menuBtn for small devices --> ///////////
+let smallMenuBtn = document.querySelector(".smallMenuBtn");
+let links = document.querySelector(".links");
+let linksDiv = document.querySelector(".links-Div");
+
+smallMenuBtn.addEventListener("click", () => {
+  linksDiv.classList.toggle("active");
+  smallMenuBtn.classList.toggle("active");
+});
+/////////// menuBtn for small devices <-- ///////////
+
+/////////// Dark Mode --> ///////////
+let darkBtn = document.querySelector(".darkBtn");
+
+darkBtn.addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+});
+/////////// Dark Mode <-- ///////////
+
+/////////// slide show stuff --> ///////////
+let slides = document.querySelector(".slides");
+let allSlide = document.querySelectorAll(".slide");
+let prevBtn = document.querySelector(".prev");
+let nextBtn = document.querySelector(".next");
+
+let count = 0;
+
+nextBtn.addEventListener("click", (eo) => {
+  if (count < allSlide.length - 1) {
+    count++;
+    updateSlider();
+  } else if (count === allSlide.length - 1) {
+    count = 0;
+    updateSlider();
+  }
+});
+//
+prevBtn.addEventListener("click", (eo) => {
+  if (count > 0) {
+    count--;
+    updateSlider();
+  } else if (count === 0) {
+    count = allSlide.length - 1;
+    updateSlider();
+  }
+});
+//
+function updateSlider(eo) {
+  slides.style.transform = `translateX(-${count * 100}%)`;
+}
+/////////// slide show stuff <-- ///////////
+
 // menu items
 let ourMenu = JSON.parse(localStorage.getItem("menu")) || []; // static
 let cart = JSON.parse(localStorage.getItem("cart")) || []; // dynamic
@@ -15,21 +67,6 @@ let menuOrdered = JSON.parse(localStorage.getItem("menuOrdered")) || []; // dyna
 let orderHistory = JSON.parse(localStorage.getItem("orderHistory")) || []; // dynamic
 
 // userOrderBtn[0].setAttribute("data-id", `${ourMenu[0].id}`); //// =>
-
-let darkBtn = document.querySelector(".darkBtn");
-let smallMenuBtn = document.querySelector(".smallMenuBtn");
-let links = document.querySelector(".links");
-let linksDiv = document.querySelector(".links-Div");
-
-console.log(linksDiv);
-smallMenuBtn.addEventListener("click", () => {
-  linksDiv.classList.toggle("active");
-  smallMenuBtn.classList.toggle("active");
-});
-
-darkBtn.addEventListener("click", () => {
-  document.body.classList.toggle("dark");
-});
 
 ////////// add items to ourMenu array //////////
 function addItem(name, price) {
