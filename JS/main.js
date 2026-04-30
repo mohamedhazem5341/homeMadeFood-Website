@@ -1,10 +1,3 @@
-let inputText = document.querySelector(".testText");
-let inputNum = document.querySelector(".testNum");
-let orderBtn = document.querySelector(".orderBtn");
-let doneBtn = document.querySelector(".doneBtn");
-let addBtn = document.querySelector(".addBtn");
-let userOrderBtn = document.querySelectorAll(".order");
-
 /////////// menuBtn for small devices --> ///////////
 let smallMenuBtn = document.querySelector(".smallMenuBtn");
 let links = document.querySelector(".links");
@@ -21,11 +14,11 @@ let darkBtn = document.querySelector(".darkBtn");
 
 darkBtn.addEventListener("click", () => {
   if (document.body.classList.contains("dark")) {
-    localStorage.setItem("theme", "light")
-    document.body.className = localStorage.getItem("theme")
-  } else if (document.body.classList.contains("light")){
-    localStorage.setItem("theme", "dark")
-    document.body.className = localStorage.getItem("theme")
+    localStorage.setItem("theme", "light");
+    document.body.className = localStorage.getItem("theme");
+  } else if (document.body.classList.contains("light")) {
+    localStorage.setItem("theme", "dark");
+    document.body.className = localStorage.getItem("theme");
   }
 });
 document.body.className = localStorage.getItem("theme") || "light";
@@ -63,6 +56,13 @@ function updateSlider(eo) {
   slides.style.transform = `translateX(-${count * 100}%)`;
 }
 /////////// slide show stuff <-- ///////////
+
+let inputText = document.querySelector(".testText");
+let inputNum = document.querySelector(".testNum");
+let orderBtn = document.querySelector(".orderBtn");
+let doneBtn = document.querySelector(".doneBtn");
+let addBtn = document.querySelector(".addBtn");
+let userOrderBtn = document.querySelectorAll(".order");
 
 // menu items
 let ourMenu = JSON.parse(localStorage.getItem("menu")) || []; // static
