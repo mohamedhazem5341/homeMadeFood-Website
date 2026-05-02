@@ -32,10 +32,6 @@
   --glass-btn-bg: #fdfbf72f;
   --glass-btn-border: 1px solid rgba(104, 104, 104, 0.6);
 }
-* {
-  margin: 0;
-  box-sizing: border-box;
-}
 .dark {
   /* this for btns and events */
   --primary: #1a1a1a;
@@ -53,11 +49,25 @@
   --glass-bg: #c5c3c361;
   --glass-border: 1px solid rgba(176, 176, 176, 0.7);
 }
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
 body {
   position: relative;
   background: var(--bg);
   color: var(--text-main);
   font-family: var(--body-family);
+}
+body::-webkit-scrollbar {
+  width: 8px;
+}
+body::-webkit-scrollbar-track {
+  background-color: var(--text-muted);
+}
+body::-webkit-scrollbar-thumb {
+  background: var(--text-main);
+  border-radius: var(--radius);
 }
 img {
   width: 100%;
@@ -65,19 +75,10 @@ img {
   display: block;
 }
 button,
-input[type=submit] {
+input[type="submit"] {
   cursor: pointer;
 }
-body::-webkit-scrollbar{
-  width: 8px;
-}
-body::-webkit-scrollbar-track{
-  background-color: var(--text-muted);
-}
-body::-webkit-scrollbar-thumb{
-  background: var(--text-main);
-  border-radius: var(--radius);
-}
+
 /*/////////////////////////// HeroSection ///////////////////////////*/
 section {
   position: relative;
