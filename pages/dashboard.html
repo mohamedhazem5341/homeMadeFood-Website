@@ -50,6 +50,7 @@
     <section class="itemDash addItem" data-section="addItem">
       <form class="newMenuForm" action="">
         <h1>New Menu Composition</h1>
+
         <label for="itemNameInput">DISH NAME</label>
         <input
           id="itemNameInput"
@@ -60,7 +61,7 @@
 
         <div class="categoryDiv">
           <label for="itemCategoryInput">CATEGORY</label>
-          <select name="" id="" required>
+          <select name="" id="itemCategoryInput" required>
             <option value="Starter">Starter</option>
             <option value="Main">Main</option>
             <option value="Dessert">Dessert</option>
@@ -77,23 +78,23 @@
           />
         </div>
 
-        <label for="itemDescripInput">DESCRIPTION & ORIGIN</label>
+        <label for="itemDescribeInput">DESCRIPTION & ORIGIN</label>
         <textarea
-          id="itemDescripInput"
+          id="itemDescribeInput"
           placeholder="Briefly describe the ingredients and technique..."
           required
         ></textarea>
+        <button id="addItemBtn" class="primaryBtn">ADD TO REPERTOIRE</button>
       </form>
       <div class="currentSelections">
         <div class="dishCounter">
           <h1>Current Selections</h1>
-          <span>14 ITEMS ACTIVE</span>
+          <span class="dishAmount"></span>
         </div>
         <hr />
         <article class="allItems">
-          
-          <section class="starter">
-            <span>Starter</span>
+          <!-- <section data-article="Starter">
+            <span data-section="Starter">Starter</span>
             <div class="item">
               <div class="itemImg">
                 <img src="/images/pancakes 2.webp" alt="" />
@@ -106,7 +107,6 @@
                 <h2>9.99$</h2>
               </div>
             </div>
-
             <div class="item">
               <div class="itemImg">
                 <img src="/images/pancakes 2.webp" alt="" />
@@ -119,7 +119,8 @@
                 <h2>9.99$</h2>
               </div>
             </div>
-          </section>
+          </section> -->
+          <section class="itemCategory" data-article="starter"></section>
         </article>
       </div>
     </section>

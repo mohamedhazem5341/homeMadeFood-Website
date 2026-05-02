@@ -31,39 +31,7 @@ boardList.addEventListener("click", (eo) => {
     }
   });
 });
-
-/////////// slide show stuff --> ///////////
-let slides = document.querySelector(".slides");
-let allSlide = document.querySelectorAll(".slide");
-let prevBtn = document.querySelector(".prev");
-let nextBtn = document.querySelector(".next");
-
-let count = 0;
-
-nextBtn.addEventListener("click", (eo) => {
-  if (count < allSlide.length - 1) {
-    count++;
-    updateSlider();
-  } else if (count === allSlide.length - 1) {
-    count = 0;
-    updateSlider();
-  }
-});
-//
-prevBtn.addEventListener("click", (eo) => {
-  if (count > 0) {
-    count--;
-    updateSlider();
-  } else if (count === 0) {
-    count = allSlide.length - 1;
-    updateSlider();
-  }
-});
-//
-function updateSlider(eo) {
-  slides.style.transform = `translateX(-${count * 100}%)`;
-}
-/////////// slide show stuff <-- ///////////
+///////////////////////////
 
 let inputText = document.querySelector(".testText");
 let inputNum = document.querySelector(".testNum");
@@ -81,12 +49,80 @@ let activeOrder = JSON.parse(localStorage.getItem("order")) || [
 let menuOrdered = JSON.parse(localStorage.getItem("menuOrdered")) || []; // dynamic
 let orderHistory = JSON.parse(localStorage.getItem("orderHistory")) || []; // dynamic
 
+let itemNameInput = document.getElementById("itemNameInput");
+let itemCategoryInput = document.getElementById("itemCategoryInput");
+let itemPriceInput = document.getElementById("itemPriceInput");
+let itemDescribeInput = document.getElementById("itemDescribeInput");
+let addItemBtn = document.getElementById("addItemBtn");
+let dishAmount = document.querySelector(".dishAmount");
+
+let allItems = document.querySelector(".allItems");
+let spanItem = document.querySelectorAll(".allItems section span");
+// let sectionItem = document.querySelectorAll(".allItems section");
+// console.log(sectionItem);
+
+// for (let i = 0; i < ourMenu.length; i++) {
+//   let sectionItem = document.querySelectorAll(`.allItems [data-article="${ourMenu[i].category}"]`);
+// }
+function renderItems() {
+  allItems.innerHTML = "";
+  let sectionItem = document.querySelectorAll(".allItems section");
+  ourMenu.forEach((item) => {
+    console.log(sectionItem);
+    for (let i = 0; i < ourMenu.length; i++) {
+      if ((sectionItem = "")) {
+        console.log("idk");
+      } else if (item.category === sectionItem[i].dataset.article) {
+        console.log("its here");
+      } else {
+        console.log("its not here");
+      }
+    }
+  });
+}
+renderItems();
+
+//   let temp = `
+// <div class="item">
+//             <div class="itemImg">
+//               <img src="/images/pancakes 2.webp" alt="" />
+//             </div>
+//             <div class="itemInfo">
+//               <h2>${item.name}</h2>
+//               <p>${item.description}</p>
+//             </div>
+//             <div class="itemPrice">
+//               <h2>${item.price}$</h2>
+//             </div>
+//           </div>
+// `;
+//   let newTemp = `
+//   <section data-article="${item.category}">
+//     <span data-section="${item.category}">${item.category.toUpperCase()}</span>
+//           <div class="item">
+//             <div class="itemImg">
+//               <img src="/images/pancakes 2.webp" alt="" />
+//             </div>
+//             <div class="itemInfo">
+//               <h2>${item.name}</h2>
+//               <p>${item.description}</p>
+//             </div>
+//             <div class="itemPrice">
+//               <h2>${item.price}$</h2>
+//             </div>
+//           </div>
+//   </section>
+// `;
 // userOrderBtn[0].setAttribute("data-id", `${ourMenu[0].id}`); //// =>
 
+dishAmount.innerHTML = `${ourMenu.length} ITEMS ACTIVE`;
+
 ////////// add items to ourMenu array //////////
-function addItem(name, price) {
+function addItem(name, describe, price, category) {
   let valueName = name;
+  let valueDescribe = describe;
   let valuePrice = price;
+  let valueCategory = category.toLowerCase();
   if (!valueName || valuePrice <= 0 || valuePrice === NaN) {
     console.log("enter a name you dumass");
     return;
@@ -94,14 +130,22 @@ function addItem(name, price) {
     ourMenu.push({
       id: crypto.randomUUID(),
       name: valueName,
+      description: valueDescribe,
       price: valuePrice,
+      category: valueCategory,
     });
   }
 
   localStorage.setItem("menu", JSON.stringify(ourMenu));
 }
-addBtn.addEventListener("click", () => {
-  addItem(inputText.value, Number(inputNum.value));
+addItemBtn.addEventListener("click", (eo) => {
+  eo.preventDefault;
+  addItem(
+    itemNameInput.value,
+    itemDescribeInput.value,
+    Number(itemPriceInput.value),
+    itemCategoryInput.value,
+  );
 });
 
 ////////// add items order to cart array //////////

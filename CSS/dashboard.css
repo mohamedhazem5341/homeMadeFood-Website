@@ -71,10 +71,10 @@
 /*/////////////////////////// AddItem ///////////////////////////*/
 /*///////////////// Form /////////////////*/
 .addItem {
-  display: flex;
   justify-content: space-between;
 }
 .addItem .newMenuForm {
+  box-shadow: var(--shadow);
   background: var(--muted);
   border: var(--glass-border);
   display: grid;
@@ -173,7 +173,14 @@ option::checkmark {
   opacity: 0.8;
   padding: calc(var(--padding) / 2) 0;
 }
-
+.primaryBtn {
+  background: black;
+  color: var(--secondary);
+  margin: calc(var(--margin) + 1rem) 0;
+  padding: var(--padding);
+  border: none;
+  grid-column: 1 / 2 span;
+}
 /*///////////////// CurrentSelections /////////////////*/
 .currentSelections {
   display: flex;
@@ -197,7 +204,6 @@ option::checkmark {
 .allItems {
   padding: var(--padding) 0;
 }
-
 .allItems span::before {
   content: "";
   position: absolute;
@@ -214,7 +220,6 @@ option::checkmark {
   opacity: 0.6;
   width: 100%;
 }
-
 .item {
   display: flex;
   justify-content: center;
