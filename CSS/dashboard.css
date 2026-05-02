@@ -61,17 +61,18 @@
 }
 .itemDash {
   display: none;
-  margin: calc(var(--margin) + 4rem) calc(var(--margin) + 1rem);
+  margin: calc(var(--margin) + 4rem) calc(var(--margin));
   padding: var(--padding);
 }
 .itemDash.active {
   display: flex;
 }
-/*  */
+/*/////////////////////////// AddItem ///////////////////////////*/
 .addItem .newMenuForm {
   background: var(--muted);
+  border: var(--glass-border);
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 50%);
   gap: 20px;
   padding: calc(var(--padding) * 3) calc(var(--padding) * 2);
   width: 40%;
@@ -95,12 +96,12 @@
   display: flex;
   flex-flow: column;
   justify-content: space-between;
-  width: clamp(200px, 20vw, 200px);
 }
 .categoryDiv select:focus,
 .newMenuForm textarea:focus {
   outline: none;
 }
+/* category selector ->*/
 .categoryDiv select,
 ::picker(select) {
   color: var(--text-main);
@@ -135,35 +136,33 @@ option::checkmark {
   border-bottom: var(--glass-border);
   transition: all 0.2s ease;
 }
-
+/* category selector <-*/
 .newMenuForm input:focus {
   outline: none;
 }
 .newMenuForm input[type="text"],
 .newMenuForm label {
   grid-column: 1 / 2 span;
-  width: 100%;
 }
-.newMenuForm textarea{
+.newMenuForm textarea {
   grid-column: 1 / 2 span;
-  width: 100%;
   resize: none;
-  height: 100px;
+  min-height: 100px;
 }
-.newMenuForm textarea::-webkit-scrollbar{
+.newMenuForm textarea::-webkit-scrollbar {
   width: 8px;
 }
-.newMenuForm textarea::-webkit-scrollbar-track{
+.newMenuForm textarea::-webkit-scrollbar-track {
   background-color: var(--text-muted);
 }
-.newMenuForm textarea::-webkit-scrollbar-thumb{
+.newMenuForm textarea::-webkit-scrollbar-thumb {
   background: var(--text-main);
   border-radius: var(--radius);
 }
 .newMenuForm label {
-  font-size: clamp( .6rem, 8vw, calc(var(--body-font) - .4rem));
+  font-size: clamp(0.6rem, 8vw, calc(var(--body-font) - 0.4rem));
   letter-spacing: 1px;
-  opacity: .8;
+  opacity: 0.8;
   padding: calc(var(--padding) / 2) 0;
 }
 
@@ -185,24 +184,18 @@ option::checkmark {
 
 @media (max-width: 900px) {
   .dashQuickSection {
-    margin: var(--margin);
-    padding: calc(var(--padding) * 6) var(--padding);
     width: 100%;
   }
-
+  /*  */
   .itemDash {
-  display: none;
-  margin: calc(var(--margin) + 4rem) auto;
-  padding: var(--padding);
-}
-.addItem .newMenuForm {
-  gap: 10px;
-  width: 100%;
-}
-
-.newMenuForm .categoryDiv,
-.newMenuForm .priceDiv {
-  width: 100%;
-  grid-column: 1 / 2 span;
-}
+    margin: calc(var(--margin) + 4rem) auto;
+  }
+  .addItem .newMenuForm {
+    gap: 10px;
+    width: 100%;
+  }
+  .newMenuForm .categoryDiv,
+  .newMenuForm .priceDiv {
+    grid-column: 1 / 2 span;
+  }
 }

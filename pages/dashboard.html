@@ -48,7 +48,6 @@
     </ul>
 
     <section class="itemDash addItem" data-section="addItem">
-      
       <form class="newMenuForm" action="">
         <h1>New Menu Composition</h1>
         <label for="itemNameInput">DISH NAME</label>
@@ -56,11 +55,12 @@
           id="itemNameInput"
           type="text"
           placeholder="e.g. Heirloom Beetroot & Smoked Ricotta"
+          required
         />
 
         <div class="categoryDiv">
           <label for="itemCategoryInput">CATEGORY</label>
-          <select name="" id="">
+          <select name="" id="" required>
             <option value="Starter">Starter</option>
             <option value="Main">Main</option>
             <option value="Dessert">Dessert</option>
@@ -69,16 +69,20 @@
 
         <div class="priceDiv">
           <label for="itemPriceInput">PRICE</label>
-          <input id="itemPriceInput" type="number" placeholder="9.99$" />
+          <input
+            id="itemPriceInput"
+            type="number"
+            placeholder="9.99$"
+            required
+          />
         </div>
 
         <label for="itemDescripInput">DESCRIPTION & ORIGIN</label>
-        <textarea name="" id="itemDescripInput" placeholder="Briefly describe the ingredients and technique..."></textarea>
-        <!-- <input
+        <textarea
           id="itemDescripInput"
-          type="text"
           placeholder="Briefly describe the ingredients and technique..."
-        /> -->
+          required
+        ></textarea>
       </form>
       <div class="currentSelections"></div>
     </section>
