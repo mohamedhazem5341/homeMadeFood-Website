@@ -1,3 +1,63 @@
 .navbar .logoDiv a {
   color: var(--text-main);
 }
+.navbar {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: var(--border);
+  padding: var(--padding);
+  z-index: 99;
+}
+
+/*/////////////////////////// DashQuickSection ///////////////////////////*/
+.dashQuickSection {
+  margin: var(--margin);
+  padding: calc(var(--padding) * 6) var(--padding);
+  width: 45%;
+}
+.dashQuickSection h1 {
+  margin-bottom: calc(var(--margin) * 2);
+  font-family: var(--heading-family);
+  font-size: calc(var(--title-font) + 1.1rem);
+}
+.dashQuickSection p {
+  line-height: 22px;
+}
+/*/////////////////////////// DashQuickSection ///////////////////////////*/
+
+.boardList {
+  border: var(--glass-border);
+  background: var(--glass-bg);
+  border-radius: var(--radius);
+  display: flex;
+  width: clamp(300px, 60vw, 750px);
+  padding: 0;
+  margin: 0 auto;
+  list-style: none;
+  overflow: auto;
+}
+.boardList li {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding) calc(var(--padding) * 1.5);
+  font-size: var(--body-font);
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.boardList li:hover,
+.boardList li.active {
+  background: var(--glass-bg);
+}
+
+@media (max-width: 900px) {
+  .dashQuickSection {
+    margin: var(--margin);
+    padding: calc(var(--padding) * 6) var(--padding);
+    width: 100%;
+  }
+}

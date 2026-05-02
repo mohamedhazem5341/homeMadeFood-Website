@@ -8,3 +8,18 @@ smallMenuBtn.addEventListener("click", () => {
   smallMenuBtn.classList.toggle("active");
 });
 /////////// menuBtn for small devices <-- ///////////
+
+/////////// Dark Mode --> ///////////
+let darkBtn = document.querySelector(".darkBtn");
+
+darkBtn.addEventListener("click", () => {
+  if (document.body.classList.contains("dark")) {
+    localStorage.setItem("theme", "light");
+    document.body.className = localStorage.getItem("theme");
+  } else if (document.body.classList.contains("light")) {
+    localStorage.setItem("theme", "dark");
+    document.body.className = localStorage.getItem("theme");
+  }
+});
+document.body.className = localStorage.getItem("theme") || "light";
+/////////// Dark Mode <-- ///////////
