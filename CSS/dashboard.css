@@ -28,9 +28,7 @@
 /*/////////////////////////// DashQuickSection ///////////////////////////*/
 
 .boardList {
-  border: var(--glass-border);
-  background: var(--glass-bg);
-  border-radius: var(--radius);
+  border-bottom: 1px solid rgba(154, 154, 154, 0.404);
   display: flex;
   width: clamp(300px, 60vw, 750px);
   padding: 0;
@@ -51,7 +49,140 @@
 }
 .boardList li:hover,
 .boardList li.active {
-  background: var(--glass-bg);
+  background-image: linear-gradient(
+    5deg,
+    rgba(53, 53, 53, 0.2),
+    rgba(53, 53, 53, 0.1),
+    rgba(53, 53, 53, 0),
+    rgba(53, 53, 53, 0),
+    rgba(53, 53, 53, 0)
+  );
+  border-bottom: 1px solid rgba(50, 50, 50, 0.887);
+}
+.itemDash {
+  display: none;
+  margin: calc(var(--margin) + 4rem) calc(var(--margin) + 1rem);
+  padding: var(--padding);
+}
+.itemDash.active {
+  display: flex;
+}
+/*  */
+.addItem {
+  width: 40%;
+}
+.addItem .newMenuForm {
+  background: var(--muted);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  padding: calc(var(--padding) * 3) calc(var(--padding) * 2);
+}
+.newMenuForm h1 {
+  grid-column: 1 / 2 span;
+  font-size: var(--title-font);
+}
+.categoryDiv select,
+.newMenuForm input,
+.newMenuForm textarea {
+  color: var(--text-main);
+  font-size: var(--body-font);
+  background: none;
+  border: none;
+  border-bottom: var(--glass-border);
+  padding: calc(var(--padding) / 2);
+}
+.newMenuForm .categoryDiv,
+.newMenuForm .priceDiv {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  width: 100%;
+}
+.categoryDiv select:focus,
+.newMenuForm textarea:focus {
+  outline: none;
+}
+.categoryDiv select,
+::picker(select) {
+  color: var(--text-main);
+  appearance: base-select;
+  background: var(--muted);
+  border-radius: 0;
+}
+select::picker-icon {
+  color: var(--glass-bg);
+  transition: 0.2s rotate;
+}
+select:open::picker-icon {
+  rotate: 180deg;
+}
+::picker(select) {
+  border: none;
+  background: var(--text-inverse);
+  border-radius: calc(var(--radius) / 2);
+  top: calc(anchor(bottom) + 1px);
+}
+option:hover,
+option:focus {
+  background: var(--text-muted);
+}
+option::checkmark {
+  order: 1;
+  margin-left: auto;
+  content: "|";
+}
+.categoryDiv select option {
+  padding: calc(var(--padding) / 3);
+  border-bottom: var(--glass-border);
+  transition: all 0.2s ease;
+}
+
+.newMenuForm input:focus {
+  outline: none;
+}
+.newMenuForm input[type="text"],
+.newMenuForm label {
+  grid-column: 1 / 2 span;
+  width: 100%;
+}
+.newMenuForm textarea{
+  grid-column: 1 / 2 span;
+  width: 100%;
+  resize: none;
+  height: 100px;
+}
+.newMenuForm textarea::-webkit-scrollbar{
+  width: 8px;
+}
+.newMenuForm textarea::-webkit-scrollbar-track{
+  background-color: var(--text-muted);
+}
+.newMenuForm textarea::-webkit-scrollbar-thumb{
+  background: var(--text-main);
+  border-radius: var(--radius);
+}
+.newMenuForm label {
+  font-size: clamp( .6rem, 8vw, calc(var(--body-font) - .4rem));
+  letter-spacing: 1px;
+  opacity: .8;
+  padding: calc(var(--padding) / 2) 0;
+}
+
+.dark .boardList {
+  border-bottom: 1px solid rgba(219, 219, 219, 0.523);
+}
+.dark .boardList li:hover,
+.dark .boardList li.active {
+  background-image: linear-gradient(
+    5deg,
+    rgba(168, 168, 168, 0.2),
+    rgba(168, 168, 168, 0.1),
+    rgba(168, 168, 168, 0),
+    rgba(168, 168, 168, 0),
+    rgba(168, 168, 168, 0)
+  );
+  border-color: rgba(219, 219, 219, 0.882);
 }
 
 @media (max-width: 900px) {
@@ -60,4 +191,20 @@
     padding: calc(var(--padding) * 6) var(--padding);
     width: 100%;
   }
+
+  .itemDash {
+  display: none;
+  margin: calc(var(--margin) + 4rem) auto;
+  padding: var(--padding);
+}
+
+  .addItem {
+  width: 100%;
+}
+.addItem .newMenuForm {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  padding: calc(var(--padding) * 3) calc(var(--padding) * 2);
+}
 }

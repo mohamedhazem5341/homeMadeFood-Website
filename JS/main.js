@@ -1,4 +1,36 @@
+let boardList = document.querySelector(".boardList");
+let Lists = document.querySelectorAll(".boardList li");
+let itemDash = document.querySelectorAll(".itemDash");
 
+// to get list&section data-type for active style
+let activeDoor = JSON.parse(localStorage.getItem("door")) || "";
+let saveActivation = document.querySelectorAll(
+  `[data-section="${activeDoor}"]`,
+);
+
+saveActivation.forEach((i) => {
+  i.classList.add("active");
+});
+
+boardList.addEventListener("click", (eo) => {
+  if (eo.target.id === "listUl") return;
+  // to show clicked list active style
+  Lists.forEach((item) => {
+    item.classList.remove("active");
+    eo.target.classList.add("active");
+
+    // to save clicked list&section data-type for active style memory
+    localStorage.setItem("door", JSON.stringify(eo.target.dataset.section));
+  });
+
+  // to show clicked section active style
+  itemDash.forEach((item) => {
+    item.classList.remove("active");
+    if (eo.target.dataset.section === item.dataset.section) {
+      item.classList.add("active");
+    }
+  });
+});
 
 /////////// slide show stuff --> ///////////
 let slides = document.querySelector(".slides");

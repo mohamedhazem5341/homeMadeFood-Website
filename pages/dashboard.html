@@ -40,17 +40,55 @@
       </p>
     </section>
 
-    <ul class="boardList">
-      <li class="active" data-section="addItem">Add Item</li>
+    <ul id="listUl" class="boardList">
+      <li class="" data-section="addItem">Add Item</li>
       <li data-section="editItem">Edit Item</li>
       <li data-section="itemOrdered">Items Ordered</li>
       <!-- <li data-section="">h4</li> -->
     </ul>
 
-    <section class="addItem" data-section="addItem"></section>
+    <section class="itemDash addItem" data-section="addItem">
+      
+      <form class="newMenuForm" action="">
+        <h1>New Menu Composition</h1>
+        <label for="itemNameInput">DISH NAME</label>
+        <input
+          id="itemNameInput"
+          type="text"
+          placeholder="e.g. Heirloom Beetroot & Smoked Ricotta"
+        />
 
-    <section class="editItem" data-section="editItem"></section>
+        <div class="categoryDiv">
+          <label for="itemCategoryInput">CATEGORY</label>
+          <select name="" id="">
+            <option value="Starter">Starter</option>
+            <option value="Main">Main</option>
+            <option value="Dessert">Dessert</option>
+          </select>
+        </div>
 
-    <section class="itemOrdered" data-section="itemOrdered"></section>
+        <div class="priceDiv">
+          <label for="itemPriceInput">PRICE</label>
+          <input id="itemPriceInput" type="number" placeholder="9.99$" />
+        </div>
+
+        <label for="itemDescripInput">DESCRIPTION & ORIGIN</label>
+        <textarea name="" id="itemDescripInput" placeholder="Briefly describe the ingredients and technique..."></textarea>
+        <!-- <input
+          id="itemDescripInput"
+          type="text"
+          placeholder="Briefly describe the ingredients and technique..."
+        /> -->
+      </form>
+      <div class="currentSelections"></div>
+    </section>
+
+    <section class="itemDash editItem" data-section="editItem">
+      <h1>editItem</h1>
+    </section>
+
+    <section class="itemDash itemOrdered" data-section="itemOrdered">
+      <h1>itemOrdered</h1>
+    </section>
   </body>
 </html>
