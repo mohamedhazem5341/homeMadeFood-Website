@@ -3,7 +3,7 @@ let Lists = document.querySelectorAll(".boardList li");
 let itemDash = document.querySelectorAll(".itemDash");
 
 // to get list&section data-type for active style
-let activeDoor = JSON.parse(localStorage.getItem("door")) || "";
+let activeDoor = JSON.parse(localStorage.getItem("door")) || "addItem";
 let saveActivation = document.querySelectorAll(
   `[data-section="${activeDoor}"]`,
 );

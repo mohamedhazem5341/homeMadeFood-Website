@@ -68,15 +68,13 @@
   display: flex;
 }
 /*  */
-.addItem {
-  width: 40%;
-}
 .addItem .newMenuForm {
   background: var(--muted);
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
   padding: calc(var(--padding) * 3) calc(var(--padding) * 2);
+  width: 40%;
 }
 .newMenuForm h1 {
   grid-column: 1 / 2 span;
@@ -97,7 +95,7 @@
   display: flex;
   flex-flow: column;
   justify-content: space-between;
-  width: 100%;
+  width: clamp(200px, 20vw, 200px);
 }
 .categoryDiv select:focus,
 .newMenuForm textarea:focus {
@@ -197,14 +195,14 @@ option::checkmark {
   margin: calc(var(--margin) + 4rem) auto;
   padding: var(--padding);
 }
-
-  .addItem {
+.addItem .newMenuForm {
+  gap: 10px;
   width: 100%;
 }
-.addItem .newMenuForm {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-  padding: calc(var(--padding) * 3) calc(var(--padding) * 2);
+
+.newMenuForm .categoryDiv,
+.newMenuForm .priceDiv {
+  width: 100%;
+  grid-column: 1 / 2 span;
 }
 }
