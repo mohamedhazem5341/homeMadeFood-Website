@@ -58,32 +58,50 @@ let dishAmount = document.querySelector(".dishAmount");
 
 let allItems = document.querySelector(".allItems");
 let spanItem = document.querySelectorAll(".allItems section span");
-// let sectionItem = document.querySelectorAll(".allItems section");
-// console.log(sectionItem);
 
-// for (let i = 0; i < ourMenu.length; i++) {
-//   let sectionItem = document.querySelectorAll(`.allItems [data-article="${ourMenu[i].category}"]`);
-// }
 function renderItems() {
   allItems.innerHTML = "";
-  let sectionItem = document.querySelectorAll(".allItems section");
+
   ourMenu.forEach((item) => {
-    console.log(sectionItem);
-    for (let i = 0; i < ourMenu.length; i++) {
-      if ((sectionItem = "")) {
-        console.log("idk");
-      } else if (item.category === sectionItem[i].dataset.article) {
-        console.log("its here");
-      } else {
-        console.log("its not here");
+    let temp = `
+<div data-type="${item.category}" class="item">
+            <div class="itemImg">
+              <img src="/images/pancakes 2.webp" alt="" />
+            </div>
+            <div class="itemInfo">
+              <h2>${item.name}</h2>
+              <p>${item.description}</p>
+            </div>
+            <div class="itemPrice">
+              <h2>${item.price}$</h2>
+            </div>
+          </div>
+`;
+    let sections = document.querySelectorAll(".allItems section");
+    let spans = document.querySelectorAll(".allItems section span");
+
+    for (let i = 0; i < sections.length; i++) {
+      if (item.category === sections[i].dataset.type) {
+        sections[i].innerHTML += temp;
+        return;
       }
     }
+
+    let sectionItem = document.createElement("section");
+    sectionItem.setAttribute("data-type", `${item.category}`);
+
+    let spanItem = document.createElement("span");
+    spanItem.textContent = item.category;
+    sectionItem.appendChild(spanItem);
+    sectionItem.innerHTML += temp;
+    allItems.appendChild(sectionItem);
   });
 }
+
 renderItems();
 
-//   let temp = `
-// <div class="item">
+// let temp = `
+// <div data-type="${item.category}" class="item">
 //             <div class="itemImg">
 //               <img src="/images/pancakes 2.webp" alt="" />
 //             </div>
@@ -95,23 +113,6 @@ renderItems();
 //               <h2>${item.price}$</h2>
 //             </div>
 //           </div>
-// `;
-//   let newTemp = `
-//   <section data-article="${item.category}">
-//     <span data-section="${item.category}">${item.category.toUpperCase()}</span>
-//           <div class="item">
-//             <div class="itemImg">
-//               <img src="/images/pancakes 2.webp" alt="" />
-//             </div>
-//             <div class="itemInfo">
-//               <h2>${item.name}</h2>
-//               <p>${item.description}</p>
-//             </div>
-//             <div class="itemPrice">
-//               <h2>${item.price}$</h2>
-//             </div>
-//           </div>
-//   </section>
 // `;
 // userOrderBtn[0].setAttribute("data-id", `${ourMenu[0].id}`); //// =>
 

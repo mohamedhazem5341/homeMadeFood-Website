@@ -72,6 +72,7 @@
 /*///////////////// Form /////////////////*/
 .addItem {
   justify-content: space-between;
+  align-items: start;
 }
 .addItem .newMenuForm {
   box-shadow: var(--shadow);
@@ -197,7 +198,7 @@ option::checkmark {
   font-family: var(--heading-family);
   font-size: calc(var(--title-font));
 }
-.currentSelections span {
+.allItems span {
   font-size: clamp(0.8rem, 8vw, calc(var(--body-font) - 0.2rem));
   margin: var(--margin) 0;
 }
@@ -213,7 +214,7 @@ option::checkmark {
   height: 100%;
   width: 2px;
 }
-.allItems section span {
+.allItems span {
   position: relative;
   padding: 0 var(--padding);
   font-size: var(--body-font);
