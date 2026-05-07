@@ -10,7 +10,6 @@
   padding: var(--padding);
   z-index: 99;
 }
-
 /*/////////////////////////// DashQuickSection ///////////////////////////*/
 .dashQuickSection {
   margin: var(--margin);
@@ -30,7 +29,7 @@
 .boardList {
   border-bottom: 1px solid rgba(154, 154, 154, 0.404);
   display: flex;
-  width: clamp(300px, 60vw, 750px);
+  width: clamp(300px, 70vw, 750px);
   padding: 0;
   margin: 0 auto;
   list-style: none;
@@ -201,6 +200,7 @@ option::checkmark {
 .allItems span {
   font-size: clamp(0.8rem, 8vw, calc(var(--body-font) - 0.2rem));
   margin: var(--margin) 0;
+  text-transform: capitalize;
 }
 .allItems {
   padding: var(--padding) 0;
@@ -227,6 +227,10 @@ option::checkmark {
   align-items: center;
   gap: 40px;
   margin: calc(var(--margin) + 3rem) var(--margin);
+  padding: calc(var(--padding) / 2) calc(var(--padding));
+  border-radius: var(--radius);
+  background-image: linear-gradient( to right , rgba(59, 52, 52, 0.6), rgba(59, 52, 52,0.4), rgba(59, 52, 52,0.2), rgba(59, 52, 52,0.02));
+  
 }
 .item .itemImg {
   width: 100px;
@@ -249,6 +253,18 @@ option::checkmark {
   font-size: calc(var(--body-font) - 0.2rem);
   opacity: 0.6;
   line-height: normal;
+}
+
+.deleteDiv {
+  width: min-content;
+}
+.deleteDiv button {
+  background: none;
+  border: none;
+  width: clamp(40px, 4vw, 40px);
+}
+button img {
+  pointer-events: none;
 }
 /*/////////////////////////// Dark Mode ///////////////////////////*/
 .dark .boardList {

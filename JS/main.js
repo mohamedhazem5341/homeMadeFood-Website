@@ -1,155 +1,22 @@
-let boardList = document.querySelector(".boardList");
-let Lists = document.querySelectorAll(".boardList li");
-let itemDash = document.querySelectorAll(".itemDash");
-
-// to get list&section data-type for active style
-let activeDoor = JSON.parse(localStorage.getItem("door")) || "addItem";
-let saveActivation = document.querySelectorAll(
-  `[data-section="${activeDoor}"]`,
-);
-
-saveActivation.forEach((i) => {
-  i.classList.add("active");
-});
-
-boardList.addEventListener("click", (eo) => {
-  if (eo.target.id === "listUl") return;
-  // to show clicked list active style
-  Lists.forEach((item) => {
-    item.classList.remove("active");
-    eo.target.classList.add("active");
-
-    // to save clicked list&section data-type for active style memory
-    localStorage.setItem("door", JSON.stringify(eo.target.dataset.section));
-  });
-
-  // to show clicked section active style
-  itemDash.forEach((item) => {
-    item.classList.remove("active");
-    if (eo.target.dataset.section === item.dataset.section) {
-      item.classList.add("active");
-    }
-  });
-});
-///////////////////////////
-
-let inputText = document.querySelector(".testText");
-let inputNum = document.querySelector(".testNum");
-let orderBtn = document.querySelector(".orderBtn");
-let doneBtn = document.querySelector(".doneBtn");
-let addBtn = document.querySelector(".addBtn");
-let userOrderBtn = document.querySelectorAll(".order");
+//////////////////////
+// let inputText = document.querySelector(".testText");
+// let inputNum = document.querySelector(".testNum");
+// let orderBtn = document.querySelector(".orderBtn");
+// let doneBtn = document.querySelector(".doneBtn");
+// let addBtn = document.querySelector(".addBtn");
+// let userOrderBtn = document.querySelectorAll(".order");
 
 // menu items
-let ourMenu = JSON.parse(localStorage.getItem("menu")) || []; // static
-let cart = JSON.parse(localStorage.getItem("cart")) || []; // dynamic
+let ourMenu = JSON.parse(localStorage.getItem("menu")) || []; // static & for all dishes menu
+let cart = JSON.parse(localStorage.getItem("cart")) || []; // dynamic & for what user saves from menu
 let activeOrder = JSON.parse(localStorage.getItem("order")) || [
   { items: [], totalPrice: 0 },
-]; // dynamic
-let menuOrdered = JSON.parse(localStorage.getItem("menuOrdered")) || []; // dynamic
-let orderHistory = JSON.parse(localStorage.getItem("orderHistory")) || []; // dynamic
+]; // dynamic & user's order
+let menuOrdered = JSON.parse(localStorage.getItem("menuOrdered")) || []; // dynamic & amount dishes's ordered
+let orderHistory = JSON.parse(localStorage.getItem("orderHistory")) || []; // dynamic & users's order history
+//////////////////////
 
-let itemNameInput = document.getElementById("itemNameInput");
-let itemCategoryInput = document.getElementById("itemCategoryInput");
-let itemPriceInput = document.getElementById("itemPriceInput");
-let itemDescribeInput = document.getElementById("itemDescribeInput");
-let addItemBtn = document.getElementById("addItemBtn");
-let dishAmount = document.querySelector(".dishAmount");
-
-let allItems = document.querySelector(".allItems");
-let spanItem = document.querySelectorAll(".allItems section span");
-
-function renderItems() {
-  allItems.innerHTML = "";
-
-  ourMenu.forEach((item) => {
-    let temp = `
-<div data-type="${item.category}" class="item">
-            <div class="itemImg">
-              <img src="/images/pancakes 2.webp" alt="" />
-            </div>
-            <div class="itemInfo">
-              <h2>${item.name}</h2>
-              <p>${item.description}</p>
-            </div>
-            <div class="itemPrice">
-              <h2>${item.price}$</h2>
-            </div>
-          </div>
-`;
-    let sections = document.querySelectorAll(".allItems section");
-    let spans = document.querySelectorAll(".allItems section span");
-
-    for (let i = 0; i < sections.length; i++) {
-      if (item.category === sections[i].dataset.type) {
-        sections[i].innerHTML += temp;
-        return;
-      }
-    }
-
-    let sectionItem = document.createElement("section");
-    sectionItem.setAttribute("data-type", `${item.category}`);
-
-    let spanItem = document.createElement("span");
-    spanItem.textContent = item.category;
-    sectionItem.appendChild(spanItem);
-    sectionItem.innerHTML += temp;
-    allItems.appendChild(sectionItem);
-  });
-}
-
-renderItems();
-
-// let temp = `
-// <div data-type="${item.category}" class="item">
-//             <div class="itemImg">
-//               <img src="/images/pancakes 2.webp" alt="" />
-//             </div>
-//             <div class="itemInfo">
-//               <h2>${item.name}</h2>
-//               <p>${item.description}</p>
-//             </div>
-//             <div class="itemPrice">
-//               <h2>${item.price}$</h2>
-//             </div>
-//           </div>
-// `;
-// userOrderBtn[0].setAttribute("data-id", `${ourMenu[0].id}`); //// =>
-
-dishAmount.innerHTML = `${ourMenu.length} ITEMS ACTIVE`;
-
-////////// add items to ourMenu array //////////
-function addItem(name, describe, price, category) {
-  let valueName = name;
-  let valueDescribe = describe;
-  let valuePrice = price;
-  let valueCategory = category.toLowerCase();
-  if (!valueName || valuePrice <= 0 || valuePrice === NaN) {
-    console.log("enter a name you dumass");
-    return;
-  } else {
-    ourMenu.push({
-      id: crypto.randomUUID(),
-      name: valueName,
-      description: valueDescribe,
-      price: valuePrice,
-      category: valueCategory,
-    });
-  }
-
-  localStorage.setItem("menu", JSON.stringify(ourMenu));
-}
-addItemBtn.addEventListener("click", (eo) => {
-  eo.preventDefault;
-  addItem(
-    itemNameInput.value,
-    itemDescribeInput.value,
-    Number(itemPriceInput.value),
-    itemCategoryInput.value,
-  );
-});
-
-////////// add items order to cart array //////////
+////////////////////// add items order to cart array //////////////////////
 function addToCart() {
   const selectedItem = ourMenu.find((i) => i.name === inputText.value); // i want to change it to search by id not name
   if (selectedItem) {
@@ -172,7 +39,7 @@ orderBtn.addEventListener("click", () => {
   addToCart();
 });
 
-////////// move items from cart array to activeOrder array & update menuOrdered array //////////
+////////////////////// move items from cart array to activeOrder array & update menuOrdered array //////////////////////
 function addToOrderList() {
   let totalValue = 0;
   if (cart.length === 0) return;
@@ -238,7 +105,7 @@ function addToOrderList() {
   // }, 10000);
   localStorage.setItem("orderHistory", JSON.stringify(orderHistory));
 }
-//////
+//////////////////////
 doneBtn.addEventListener("click", () => {
   addToOrderList();
 });

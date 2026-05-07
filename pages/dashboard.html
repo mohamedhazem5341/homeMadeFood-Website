@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/CSS/style.css" />
-    <link rel="stylesheet" href="/CSS/navBar.css" />
     <link rel="stylesheet" href="/CSS/dashboard.css" />
     <script src="/JS/navBar.js" defer></script>
     <script src="/JS/main.js" defer></script>
+    <script src="/JS/dashboard.js" defer></script>
     <title>Dashboard</title>
   </head>
   <body>
@@ -62,12 +62,12 @@
         <div class="categoryDiv">
           <label for="itemCategoryInput">CATEGORY</label>
           <select name="" id="itemCategoryInput" required>
+            <option value="" selected>--Choose option--</option>
             <option value="Starter">Starter</option>
             <option value="Main">Main</option>
             <option value="Dessert">Dessert</option>
           </select>
         </div>
-
         <div class="priceDiv">
           <label for="itemPriceInput">PRICE</label>
           <input
