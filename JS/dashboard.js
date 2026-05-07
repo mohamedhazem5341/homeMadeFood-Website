@@ -128,6 +128,7 @@ addItemBtn.addEventListener("click", (eo) => {
 ////////////////////// Render items //////////////////////
 let allItems = document.querySelector(".allItems");
 let spanItem = document.querySelectorAll(".allItems section span");
+let deleteBtn = document.querySelectorAll(".deleteDiv button");
 
 function renderItems() {
   allItems.innerHTML = "";
@@ -181,6 +182,7 @@ renderItems();
 
 ////////////////////// Delete item //////////////////////
 function deleteItem() {
+  if (!deleteBtn) return;
   deleteBtn.forEach((btn) => {
     btn.addEventListener("click", (eo) => {
       ourMenu.forEach((item) => {
@@ -205,8 +207,3 @@ function deleteItem() {
 }
 
 ////////////////////// Edit item //////////////////////
-
-
-
-
-
