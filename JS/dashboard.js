@@ -41,7 +41,10 @@ let itemCategoryInput = document.getElementById("itemCategoryInput");
 let itemPriceInput = document.getElementById("itemPriceInput");
 let itemDescribeInput = document.getElementById("itemDescribeInput");
 let addItemBtn = document.getElementById("addItemBtn");
-
+function addBtnContent() {
+  addItemBtn.textContent = "ADD TO REPERTOIRE";
+}
+addBtnContent();
 ////////////////////// add items to ourMenu array //////////////////////
 let tempPush = {};
 function addItem(name, describe, price, category) {
@@ -59,9 +62,12 @@ function addItem(name, describe, price, category) {
   ) {
     console.log("Fill your inputs");
 
-    addItemBtn.setAttribute("style", "background-color: rgb(167, 0, 0);");
+    addItemBtn.setAttribute("style", "background-color: rgb(167, 0, 0); ");
+    addItemBtn.textContent = "Failed";
+
     setTimeout(() => {
       addItemBtn.removeAttribute("style");
+      addBtnContent();
     }, 1500);
 
     return;
@@ -77,9 +83,12 @@ function addItem(name, describe, price, category) {
 
     // let lol = document.querySelector(`#${tempPush.id}`);
 
-    addItemBtn.setAttribute("style", "background-color: rgb(25, 167, 0);");
+    addItemBtn.setAttribute("style", `background-color: rgb(25, 167, 0);`);
+    addItemBtn.textContent = "Successful";
+
     setTimeout(() => {
       addItemBtn.removeAttribute("style");
+      addBtnContent();
     }, 1500);
 
     itemNameInput.value = "";
@@ -104,17 +113,12 @@ addItemBtn.addEventListener("click", (eo) => {
   renderItems();
 
   if (tempPush.id) {
-    document
-      .getElementById(`${tempPush.id}`)
-      .setAttribute(
-        "style",
-        "background-image: linear-gradient( to right , rgba(25, 167, 0, 0.6), rgba(25, 167, 0, 0.4), rgba(25, 167, 0, 0.2), rgba(25, 167, 0, 0.02));",
-      );
+    document.getElementById(`${tempPush.id}`).classList.add("added");
 
     setTimeout(() => {
-      document.getElementById(`${tempPush.id}`).removeAttribute("style");
+      document.getElementById(`${tempPush.id}`).classList.remove("added");
       tempPush = {};
-    }, 1500);
+    }, 1200);
   }
 });
 
@@ -140,7 +144,7 @@ function renderItems() {
               <h2>${item.price}$</h2>
             </div>
             <div class="deleteDiv">
-            <button onclick="deleteItem()" data-itemid="${item.id}" class="delBtn"><img src="/images/trash bin.png" alt=""></button>
+            <button onclick="deleteItem()" data-itemid="${item.id}" class="delBtn"><img src="/images/trash bin.webp" alt=""></button>
             </div>
           </div>
 `;
@@ -176,20 +180,18 @@ function deleteItem() {
       ourMenu.forEach((item) => {
         if (eo.target.dataset.itemid === item.id) {
           const index = ourMenu.indexOf(item);
+
           if (index > -1) {
             let div = document
               .getElementById(`${item.id}`)
-              .setAttribute(
-                "style",
-                "background-image: linear-gradient( to right , rgba(167, 0, 0,0.6), rgba(167, 0, 0,0.4), rgba(167, 0, 0,0.2), rgba(167, 0, 0,0.02));",
-              );
+              .classList.add("removed");
+
             setTimeout(() => {
               ourMenu.splice(index, 1);
               renderItems();
-
               dishAmount.innerHTML = `${ourMenu.length} ITEMS ACTIVE`;
               localStorage.setItem("menu", JSON.stringify(ourMenu));
-            }, 2000);
+            }, 1200);
           }
         }
       });

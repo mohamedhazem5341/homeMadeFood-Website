@@ -229,9 +229,58 @@ option::checkmark {
   margin: calc(var(--margin) + 3rem) var(--margin);
   padding: calc(var(--padding) / 2) calc(var(--padding));
   border-radius: var(--radius);
-  background-image: linear-gradient( to right , rgba(59, 52, 52, 0.6), rgba(59, 52, 52,0.4), rgba(59, 52, 52,0.2), rgba(59, 52, 52,0.02));
-  
+  background: linear-gradient(
+    to right,
+    rgba(59, 52, 52, 0.6),
+    rgba(59, 52, 52, 0.4),
+    rgba(59, 52, 52, 0.2),
+    rgba(59, 52, 52, 0.02)
+  );
 }
+
+.removed {
+  background-image: linear-gradient(
+    to right,
+    rgba(167, 0, 0, 0.02),
+    rgba(167, 0, 0, 0.2),
+    rgba(167, 0, 0, 0.4),
+    rgba(167, 0, 0, 0.6),
+    rgba(167, 0, 0, 0.4),
+    rgba(167, 0, 0, 0.2),
+    rgba(167, 0, 0, 0.02)
+  );
+  background-repeat: no-repeat;
+  background-size: 200%;
+  background-position: 100% 0%;
+  animation: removed 1.2s linear forwards infinite;
+}
+@keyframes removed {
+  to {
+    background-position: 0% 0%;
+  }
+}
+.added {
+  background-image: linear-gradient(
+    to right,
+    rgba(25, 167, 0, 0.02),
+    rgba(25, 167, 0, 0.2),
+    rgba(25, 167, 0, 0.4),
+    rgba(25, 167, 0, 0.6),
+    rgba(25, 167, 0, 0.4),
+    rgba(25, 167, 0, 0.2),
+    rgba(25, 167, 0, 0.02)
+  );
+  background-repeat: no-repeat;
+  background-size: 200%;
+  background-position: 100% 0%;
+  animation: added 1.2s linear forwards infinite;
+}
+@keyframes added {
+  to {
+    background-position: 0% 0%;
+  }
+}
+
 .item .itemImg {
   width: 100px;
   height: 100px;
@@ -281,6 +330,9 @@ button img {
     rgba(168, 168, 168, 0)
   );
   border-color: rgba(219, 219, 219, 0.882);
+}
+.dark button img {
+  filter: invert(1);
 }
 
 @media (max-width: 900px) {
