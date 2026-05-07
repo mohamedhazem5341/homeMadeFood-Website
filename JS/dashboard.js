@@ -45,8 +45,10 @@ function addBtnContent() {
   addItemBtn.textContent = "ADD TO REPERTOIRE";
 }
 addBtnContent();
-////////////////////// add items to ourMenu array //////////////////////
+
+////////////////////// Add item to ourMenu array //////////////////////
 let tempPush = {};
+
 function addItem(name, describe, price, category) {
   let valueName = name;
   let valueDescribe = describe;
@@ -60,10 +62,11 @@ function addItem(name, describe, price, category) {
     !valueDescribe ||
     valueCategory === ""
   ) {
+    // if there is input is invalid or empty
     console.log("Fill your inputs");
 
     addItemBtn.setAttribute("style", "background-color: rgb(167, 0, 0); ");
-    addItemBtn.textContent = "Failed";
+    addItemBtn.textContent = "Failed | Fill the inputs";
 
     setTimeout(() => {
       addItemBtn.removeAttribute("style");
@@ -72,6 +75,7 @@ function addItem(name, describe, price, category) {
 
     return;
   } else {
+    // if all inputs valid
     tempPush = {
       id: crypto.randomUUID(),
       name: valueName,
@@ -80,8 +84,6 @@ function addItem(name, describe, price, category) {
       category: valueCategory,
     };
     ourMenu.push(tempPush);
-
-    // let lol = document.querySelector(`#${tempPush.id}`);
 
     addItemBtn.setAttribute("style", `background-color: rgb(25, 167, 0);`);
     addItemBtn.textContent = "Successful";
@@ -112,6 +114,7 @@ addItemBtn.addEventListener("click", (eo) => {
 
   renderItems();
 
+  // to give added item green background animation for 1.2s
   if (tempPush.id) {
     document.getElementById(`${tempPush.id}`).classList.add("added");
 
@@ -129,6 +132,7 @@ let spanItem = document.querySelectorAll(".allItems section span");
 function renderItems() {
   allItems.innerHTML = "";
 
+  // to render all item in menu
   ourMenu.forEach((item, i) => {
     dishAmount.innerHTML = `${ourMenu.length} ITEMS ACTIVE`;
     let temp = `
@@ -144,7 +148,7 @@ function renderItems() {
               <h2>${item.price}$</h2>
             </div>
             <div class="deleteDiv">
-            <button onclick="deleteItem()" data-itemid="${item.id}" class="delBtn"><img src="/images/trash bin.webp" alt=""></button>
+            <button onclick="deleteItem()" data-itemid="${item.id}"><img src="/images/trash bin.webp" alt=""></button>
             </div>
           </div>
 `;
@@ -152,13 +156,14 @@ function renderItems() {
     let spans = document.querySelectorAll(".allItems section span");
 
     for (let i = 0; i < sections.length; i++) {
+      // loop see if there section for item to put it in
       if (item.category === sections[i].dataset.type) {
         sections[i].innerHTML += temp;
         deleteBtn = document.querySelectorAll(".deleteDiv button"); /////
         return;
       }
     }
-
+    // create section for item if there is no section for the item
     let sectionItem = document.createElement("section");
     sectionItem.setAttribute("data-type", `${item.category}`);
 
@@ -174,17 +179,17 @@ function renderItems() {
 }
 renderItems();
 
+////////////////////// Delete item //////////////////////
 function deleteItem() {
   deleteBtn.forEach((btn) => {
     btn.addEventListener("click", (eo) => {
       ourMenu.forEach((item) => {
         if (eo.target.dataset.itemid === item.id) {
+          // to get item index from ourMenu to remove
           const index = ourMenu.indexOf(item);
 
           if (index > -1) {
-            let div = document
-              .getElementById(`${item.id}`)
-              .classList.add("removed");
+            document.getElementById(`${item.id}`).classList.add("removed");
 
             setTimeout(() => {
               ourMenu.splice(index, 1);
@@ -198,3 +203,10 @@ function deleteItem() {
     });
   });
 }
+
+////////////////////// Edit item //////////////////////
+
+
+
+
+
