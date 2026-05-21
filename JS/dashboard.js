@@ -112,8 +112,8 @@ addItemBtn.addEventListener("click", (eo) => {
     itemCategoryInput,
   );
 
-  renderItems();
-
+  renderAddItems();
+  renderEditItems();
   // to give added item green background animation for 1.2s
   if (tempPush.id) {
     document.getElementById(`${tempPush.id}`).classList.add("added");
@@ -130,14 +130,17 @@ let allItems = document.querySelector(".allItems");
 let spanItem = document.querySelectorAll(".allItems section span");
 let deleteBtn = document.querySelectorAll(".deleteDiv button");
 
-function renderItems() {
+let editItem = document.querySelector(".editItem");
+let editItemArticle = document.querySelector(".editItem article");
+
+function renderAddItems() {
   allItems.innerHTML = "";
 
   // to render all item in menu
-  ourMenu.forEach((item, i) => {
+  ourMenu.forEach((item) => {
     dishAmount.innerHTML = `${ourMenu.length} ITEMS ACTIVE`;
     let temp = `
-<div id="${item.id}" data-type="${item.category}" class="item">
+<div id="${item.id}" data-type="${item.category}" data-id="${item.id}" class="item">
             <div class="itemImg">
               <img src="/images/pancakes 2.webp" alt="" />
             </div>
@@ -178,9 +181,45 @@ function renderItems() {
   });
   deleteItem();
 }
-renderItems();
+renderAddItems();
+
+function renderEditItems() {
+  editItemArticle.innerHTML = "";
+
+  ourMenu.forEach((item) => {
+    let temp = `
+<div id="${item.id}" data-type="${item.category}" data-id="${item.id}" class="item">
+            <div class="itemImg">
+              <img src="/images/pancakes 2.webp" alt="" />
+            </div>
+            <div class="itemInfo">
+              <h2>${item.name}</h2>
+              <p>${item.description}</p>
+            </div>
+            <div class="itemPrice">
+              <h2>${item.price}$</h2>
+            </div>
+            <div class="editDiv">
+            <button onclick="editItem()" data-itemid="${item.id}">edit</button>
+            </div>
+            <div class="deleteDiv">
+            <button onclick="deleteItem()" data-itemid="${item.id}"><img src="/images/trash bin.webp" alt=""></button>
+            </div>
+          </div>
+`;
+    let sectionItem = document.createElement("section");
+    sectionItem.innerHTML += temp;
+
+    editItemArticle.appendChild(sectionItem);
+
+    deleteBtn = document.querySelectorAll(".deleteDiv button"); ////
+  });
+  deleteItem();
+}
+renderEditItems();
 
 ////////////////////// Delete item //////////////////////
+
 function deleteItem() {
   if (!deleteBtn) return;
   deleteBtn.forEach((btn) => {
@@ -191,11 +230,17 @@ function deleteItem() {
           const index = ourMenu.indexOf(item);
 
           if (index > -1) {
-            document.getElementById(`${item.id}`).classList.add("removed");
+            let itemId = document.querySelectorAll(`[data-id= "${item.id}"]`);
+            console.log(itemId);
+            itemId.forEach((test)=>{
+              test.classList.add("removed");
+            })
+            // itemId.classList.add("removed");
 
             setTimeout(() => {
               ourMenu.splice(index, 1);
-              renderItems();
+              renderAddItems();
+              renderEditItems();
               dishAmount.innerHTML = `${ourMenu.length} ITEMS ACTIVE`;
               localStorage.setItem("menu", JSON.stringify(ourMenu));
             }, 1200);
@@ -205,5 +250,7 @@ function deleteItem() {
     });
   });
 }
-
 ////////////////////// Edit item //////////////////////
+function editItem() {
+    
+}

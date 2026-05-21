@@ -238,6 +238,53 @@ option::checkmark {
   );
 }
 
+.item .itemImg {
+  width: 200px;
+  height: 120px;
+}
+.itemImg img {
+  object-fit: cover;
+}
+.itemInfo {
+  line-height: 32px;
+  width: 50%;
+}
+.itemPrice {
+  width: 25%;
+}
+.item h2 {
+  font-size: calc(var(--body-font) + 0.4rem);
+}
+.item p {
+  font-size: calc(var(--body-font) - 0.2rem);
+  opacity: 0.6;
+  line-height: normal;
+}
+.deleteDiv {
+  width: min-content;
+}
+.deleteDiv button {
+  background: none;
+  border: none;
+  width: clamp(40px, 4vw, 40px);
+}
+button img {
+  pointer-events: none;
+}
+
+.editItem article {
+  width: 100%;
+  display: flex;
+  flex-flow: wrap;
+  gap: 20px;
+}
+.editItem article section{
+  width: 49%;
+}
+.editItem article .item {
+  margin: calc(var(--margin) + 1rem) var(--margin);
+}
+
 .removed {
   background-image: linear-gradient(
     to right,
@@ -279,41 +326,6 @@ option::checkmark {
   to {
     background-position: 0% 0%;
   }
-}
-
-.item .itemImg {
-  width: 200px;
-  height: 120px;
-}
-.itemImg img {
-  object-fit: cover;
-}
-.itemInfo {
-  line-height: 32px;
-  width: 50%;
-}
-.itemPrice {
-  width: 25%;
-}
-.item h2 {
-  font-size: calc(var(--body-font) + 0.4rem);
-}
-.item p {
-  font-size: calc(var(--body-font) - 0.2rem);
-  opacity: 0.6;
-  line-height: normal;
-}
-
-.deleteDiv {
-  width: min-content;
-}
-.deleteDiv button {
-  background: none;
-  border: none;
-  width: clamp(40px, 4vw, 40px);
-}
-button img {
-  pointer-events: none;
 }
 /*/////////////////////////// Dark Mode ///////////////////////////*/
 .dark .boardList {
