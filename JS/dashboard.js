@@ -179,6 +179,7 @@ function renderAddItems() {
     allItems.appendChild(sectionItem);
 
     deleteBtn = document.querySelectorAll(".deleteDiv button"); ////
+    editBtn = document.querySelectorAll(".editDiv button"); ////
   });
   deleteItem();
 }
@@ -233,3 +234,12 @@ function deleteItem() {
   });
 }
 ////////////////////// Edit item //////////////////////
+function editItem() {
+   if (!editBtn) return;
+  editBtn.forEach((btn) => {
+    btn.addEventListener("click", (eo) => {
+      
+    })
+  })
+  
+}
