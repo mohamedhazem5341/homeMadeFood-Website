@@ -130,16 +130,13 @@ let allItems = document.querySelector(".allItems");
 let spanItem = document.querySelectorAll(".allItems section span");
 let deleteBtn = document.querySelectorAll(".deleteDiv button");
 
-let editItem = document.querySelector(".editItem");
-let editItemArticle = document.querySelector(".editItem article");
-
 function renderAddItems() {
   allItems.innerHTML = "";
 
   // to render all item in menu
   ourMenu.forEach((item) => {
     dishAmount.innerHTML = `${ourMenu.length} ITEMS ACTIVE`;
-    let temp = `
+    tempItemDiv = `
 <div id="${item.id}" data-type="${item.category}" data-id="${item.id}" class="item">
             <div class="itemImg">
               <img src="/images/pancakes 2.webp" alt="" />
@@ -151,6 +148,10 @@ function renderAddItems() {
             <div class="itemPrice">
               <h2>${item.price}$</h2>
             </div>
+            <div class="editDiv">
+            <button onclick="editItem()" data-itemid="${item.id}">Edit</button>
+            </div>
+            
             <div class="deleteDiv">
             <button onclick="deleteItem()" data-itemid="${item.id}"><img src="/images/trash bin.webp" alt=""></button>
             </div>
@@ -174,7 +175,7 @@ function renderAddItems() {
     let spanItem = document.createElement("span");
     spanItem.textContent = item.category;
     sectionItem.appendChild(spanItem);
-    sectionItem.innerHTML += temp;
+    sectionItem.innerHTML += tempItemDiv;
     allItems.appendChild(sectionItem);
 
     deleteBtn = document.querySelectorAll(".deleteDiv button"); ////
@@ -182,36 +183,17 @@ function renderAddItems() {
   deleteItem();
 }
 renderAddItems();
+/////////////////////
+
+let editItemArticle = document.querySelector(".editItem article");
 
 function renderEditItems() {
   editItemArticle.innerHTML = "";
 
   ourMenu.forEach((item) => {
-    let temp = `
-<div id="${item.id}" data-type="${item.category}" data-id="${item.id}" class="item">
-            <div class="itemImg">
-              <img src="/images/pancakes 2.webp" alt="" />
-            </div>
-            <div class="itemInfo">
-              <h2>${item.name}</h2>
-              <p>${item.description}</p>
-            </div>
-            <div class="itemPrice">
-              <h2>${item.price}$</h2>
-            </div>
-            <div class="editDiv">
-            <button onclick="editItem()" data-itemid="${item.id}">edit</button>
-            </div>
-            <div class="deleteDiv">
-            <button onclick="deleteItem()" data-itemid="${item.id}"><img src="/images/trash bin.webp" alt=""></button>
-            </div>
-          </div>
-`;
     let sectionItem = document.createElement("section");
-    sectionItem.innerHTML += temp;
-
+    sectionItem.innerHTML += tempItemDiv;
     editItemArticle.appendChild(sectionItem);
-
     deleteBtn = document.querySelectorAll(".deleteDiv button"); ////
   });
   deleteItem();
@@ -232,9 +214,9 @@ function deleteItem() {
           if (index > -1) {
             let itemId = document.querySelectorAll(`[data-id= "${item.id}"]`);
             console.log(itemId);
-            itemId.forEach((test)=>{
-              test.classList.add("removed");
-            })
+            itemId.forEach((item) => {
+              item.classList.add("removed");
+            });
             // itemId.classList.add("removed");
 
             setTimeout(() => {
@@ -251,6 +233,3 @@ function deleteItem() {
   });
 }
 ////////////////////// Edit item //////////////////////
-function editItem() {
-    
-}
