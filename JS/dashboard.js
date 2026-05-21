@@ -235,11 +235,14 @@ function deleteItem() {
 }
 ////////////////////// Edit item //////////////////////
 function editItem() {
-   if (!editBtn) return;
+  if (!editBtn) return;
   editBtn.forEach((btn) => {
     btn.addEventListener("click", (eo) => {
-      
-    })
-  })
-  
+      ourMenu.forEach((item) => {
+        if (eo.target.dataset.itemid === item.id) {
+          
+        }
+      });
+    });
+  });
 }
