@@ -3,7 +3,7 @@
   --secondary: #fdfbf7;
   --muted: #ddd9d8;
   /* ///bg//// */
-  --bg: #fdf8f8;
+  --bg: #f1ebeb;
   --card-bg: #fdfbf7;
   /* ////textColor/// */
   --text-main: #1c1b1b;
@@ -107,6 +107,7 @@ input[type="submit"] {
 .navbar .links-Div {
   position: fixed;
   left: 50%;
+  z-index: -1;
   transform: translate(-50%);
   list-style: none;
   background-color: var(--glass-bg);
@@ -114,6 +115,7 @@ input[type="submit"] {
   border-radius: calc(var(--radius) / 2);
   backdrop-filter: blur(10px);
   box-shadow: 4px 4px 10px -10px;
+  overflow: hidden;
 }
 .links-Div .links {
   display: flex;

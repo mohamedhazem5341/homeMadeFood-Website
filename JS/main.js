@@ -1,24 +1,20 @@
 //////////////////////
-// let inputText = document.querySelector(".testText");
-// let inputNum = document.querySelector(".testNum");
-// let orderBtn = document.querySelector(".orderBtn");
-// let doneBtn = document.querySelector(".doneBtn");
-// let addBtn = document.querySelector(".addBtn");
-// let userOrderBtn = document.querySelectorAll(".order");
+tax = 0.14;
+shipment = 0.05;
+//////////////////////
 
 // menu items
 let ourMenu = JSON.parse(localStorage.getItem("menu")) || []; // static & for all dishes menu
 let cart = JSON.parse(localStorage.getItem("cart")) || []; // dynamic & for what user saves from menu
-let activeOrder = JSON.parse(localStorage.getItem("order")) || [
-  { items: [], totalPrice: 0 },
-]; // dynamic & user's order
+let confirmOrder = JSON.parse(localStorage.getItem("confirmOrder")) || []; // dynamic & user's order
+let activeOrder = JSON.parse(localStorage.getItem("order")) || []; // dynamic & user's order
 let menuOrdered = JSON.parse(localStorage.getItem("menuOrdered")) || []; // dynamic & amount dishes's ordered
 let orderHistory = JSON.parse(localStorage.getItem("orderHistory")) || []; // dynamic & users's order history
+let itemAvailablety = JSON.parse(localStorage.getItem("available")) || []; // dynamic & users's order history
 //////////////////////
-
 ////////////////////// add items order to cart array //////////////////////
 function addToCart() {
-  const selectedItem = ourMenu.find((i) => i.name === inputText.value); // i want to change it to search by id not name
+  const selectedItem = ourMenu.find((i) => i.name === inputText.value); // i want to change it to search by id not name but it will not be by input value it will maybe by btn
   if (selectedItem) {
     console.log("we have it");
   } else {
@@ -35,9 +31,6 @@ function addToCart() {
   }
   localStorage.setItem("cart", JSON.stringify(cart));
 }
-orderBtn.addEventListener("click", () => {
-  addToCart();
-});
 
 ////////////////////// move items from cart array to activeOrder array & update menuOrdered array //////////////////////
 function addToOrderList() {
@@ -106,6 +99,3 @@ function addToOrderList() {
   localStorage.setItem("orderHistory", JSON.stringify(orderHistory));
 }
 //////////////////////
-doneBtn.addEventListener("click", () => {
-  addToOrderList();
-});

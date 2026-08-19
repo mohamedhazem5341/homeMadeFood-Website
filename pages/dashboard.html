@@ -18,7 +18,7 @@
 
       <div class="links-Div">
         <div class="links">
-          <a href=""><li>Menu</li></a>
+          <a href="/pages/menu.html"><li>Menu</li></a>
           <a href=""><li>Reservations</li></a>
           <a href=""><li>Contact</li></a>
           <a href="/pages/dashboard.html"><li>Dashboard</li></a>
@@ -42,7 +42,7 @@
 
     <ul id="listUl" class="boardList">
       <li class="" data-section="addItem">Add Item</li>
-      <li data-section="editItem">Edit Item</li>
+      <!-- <li data-section="editItem">Edit Item</li> -->
       <li data-section="itemOrdered">Items Ordered</li>
       <!-- <li data-section="">h4</li> -->
     </ul>
@@ -95,13 +95,64 @@
         <article class="allItems"></article>
       </div>
     </section>
-
-    <section class="itemDash editItem" data-section="editItem">
+    <!-- <section class="itemDash editItem" data-section="editItem">
       <article class=""></article>
-    </section>
+    </section> -->
 
     <section class="itemDash itemOrdered" data-section="itemOrdered">
       <h1>itemOrdered</h1>
     </section>
+
+    <div class="popup">
+      <div class="popupContent">
+        <button class="closeBtn">X</button>
+        <div class="item-content">
+          <div class="itemImg">
+            <img src="/images/bamberg-mossel-dish.webp" alt="" />
+          </div>
+          <div class="itemInfo">
+            <label for="itemInfoNameInput">Name: </label>
+            <h2><input id="itemInfoNameInput" type="text" /></h2>
+
+            <label for="itemInfoDescriptionInput">Description: </label>
+            <p>
+              <textarea
+                name=""
+                id="itemInfoDescriptionInput"
+                maxlength="160"
+              ></textarea>
+            </p>
+
+            <label for="itemInfoPriceInput">Price: </label>
+            <p><input id="itemInfoPriceInput" type="number" /></p>
+
+            <label for="itemCategoryEditInput">CATEGORY: </label>
+            <div class="categoryDiv">
+              <select name="" id="itemCategoryEditInput" required>
+                <option value="Starter">Starter</option>
+                <option value="Main">Main</option>
+                <option value="Dessert">Dessert</option>
+              </select>
+            </div>
+
+            <label for="itemAvailableEditInput">Available: </label>
+            <div class="categoryDiv">
+              <select name="" id="itemAvailableEditInput" required>
+                <option value="Available">Available</option>
+                <option value="Unavailable">Unavailable</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="ccBtns">
+          <button onclick="cancelEdit()" class="actBtn cancelBtn">
+            Cancel
+          </button>
+          <button onclick="confirmEdit()" class="actBtn confirmBtn">
+            Confirm
+          </button>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
